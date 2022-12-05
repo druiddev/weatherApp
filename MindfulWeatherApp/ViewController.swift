@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import CoreLocation
 
-class ViewController: UIViewController{
+class ViewController: UIViewController, CLLocationManagerDelegate{
 
     
     @IBOutlet var locationLabel: UILabel!
@@ -18,11 +19,17 @@ class ViewController: UIViewController{
     @IBOutlet var weatherDescriptionLabel: UILabel!
     
     var weekInfo = [WeatherInfo]()
+    let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //json weather data
         json()
+        
+        //location manager
+        setupLocationManager()
+        
         
         for info in weekInfo {
             locationLabel.text = "\(info.city), \(info.state)"
@@ -32,6 +39,36 @@ class ViewController: UIViewController{
             }
         }
     }
+    
+    func setupLocationManager() {
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        //ask for this when plant is being created.
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.last {
+            if location.horizontalAccuracy > 0 {
+                //if negative, its invaild
+                locationManager.stopUpdatingLocation()
+                //this is so it doesnt drain battery once location data is correct
+                
+                let longitude = location.coordinate.longitude
+                let latitude = location.coordinate.latitude
+                
+                print("longitude = \(longitude), latitude = \(latitude)")
+            }
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Location update failed, \(error)")
+    }
+    
+    
+    
 }
  
 
