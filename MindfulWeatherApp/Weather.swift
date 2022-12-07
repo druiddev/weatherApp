@@ -10,57 +10,24 @@ import UIKit
 
 class WeatherInfo {
     
-    var unit : String
-    var city : String
-    var state : String
-    var lat : String
-    var lon : String
-    var timeZone : String
-    var temperature : Int
-    var weatherCode : Int
-    var iconString : [String]
-    var description : [String]
+    var temp : Double
+    var humidity : Double
+    var minTemp : Double
+    var maxTemp : Double
+    var weatherID : Int
+    var mainDescription : String
+    var description : String
+    var iconID : String
     
-    
-    init(unit: String, city: String, state: String, lat: String, lon: String, timeZone: String, temperature: Int, weatherCode: Int, iconString: [String], description: [String]) {
-        self.unit = unit
-        self.city = city
-        self.state = state
-        self.lat = lat
-        self.lon = lon
-        self.timeZone = timeZone
-        self.temperature = temperature
-        self.weatherCode = weatherCode
-        self.iconString = iconString
+    init(temp: Double, humidity: Double, minTemp: Double, maxTemp: Double, weatherID: Int, mainDescription: String, description: String, iconID: String) {
+        self.temp = temp
+        self.humidity = humidity
+        self.minTemp = minTemp
+        self.maxTemp = maxTemp
+        self.weatherID = weatherID
+        self.mainDescription = mainDescription
         self.description = description
-    }
-    
-    
-    
-    
-    var imageProperty: UIImage {
-        var imageFromUrl: UIImage! = nil
-        
-        for string in iconString{
-            
-            let urlString = string
-            
-            if urlString.contains("http"),
-               let url = URL(string: urlString),
-               var urlComp = URLComponents(url: url, resolvingAgainstBaseURL: false)
-            {
-                urlComp.scheme = "https"
-                
-                if let secureURL = urlComp.url {
-                    do {
-                        let imageData = try Data.init(contentsOf: secureURL)
-                        imageFromUrl = UIImage(data: imageData)!
-                    } catch { print(error)}
-                }
-            }
-        }
-        return imageFromUrl
-        
+        self.iconID = iconID
     }
     
     

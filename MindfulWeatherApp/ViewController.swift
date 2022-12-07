@@ -18,25 +18,34 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     @IBOutlet var viewBackground: UIView!
     @IBOutlet var weatherDescriptionLabel: UILabel!
     
-    var weekInfo = [WeatherInfo]()
+    var weatherInfo = [WeatherInfo]()
+    var locationInfo = [Location]()
     let locationManager = CLLocationManager()
+    var lat: CLLocationDegrees = 0.0
+    var lon: CLLocationDegrees = 0.0
+    var API = "405db7bf13ea449a2506f66752e029b5"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //json weather data
-        json()
+        weatherInformation(atURL: "https://api.openweathermap.org/data/2.5/forecast?lat=\(lat)&lon=\(lon)&appid=\(API)&units=imperial")
+        
+        //location name based on lat and lon
+        reverseGeocoding(atURL: "https://api.openweathermap.org/geo/1.0/reverse?lat=\(lat)&lon=\(lon)&limit=5&appid=\(API)")
+        
+            daysCollectionView.reloadData()
         
         //location manager
         setupLocationManager()
         
+        for loc in locationInfo{
+            locationLabel.text = loc.name
+        }
         
-        for info in weekInfo {
-            locationLabel.text = "\(info.city), \(info.state)"
-            temperatureLabel.text = info.temperature.description
-            for des in info.description{
-                weatherDescriptionLabel.text = des
-            }
+        for info in weatherInfo {
+            temperatureLabel.text = info.temp.description
+            weatherDescriptionLabel.text = info.mainDescription
         }
     }
     
@@ -56,8 +65,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
                 //this is so it doesnt drain battery once location data is correct
                 
                 let longitude = location.coordinate.longitude
+                lon = (longitude*100).rounded()/100 //rounds it to two decimal places
+                print(lon)
                 let latitude = location.coordinate.latitude
-                
+                lat = (latitude*100).rounded()/100
+                print(lat)
                 print("longitude = \(longitude), latitude = \(latitude)")
             }
         }
@@ -67,6 +79,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
         print("Location update failed, \(error)")
     }
     
+    func backgroundColorBasedOnTime(){
+        
+//        switch  {
+//        case :
+//
+//        default:
+//
+//        }
+        
+    }
     
     
 }
@@ -82,8 +104,8 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "daysCell", for: indexPath) as? CollectionViewCell else {return collectionView.dequeueReusableCell(withReuseIdentifier: "daysCell", for: indexPath)}
         
 //        cell.dayLabel.text = "DAY"
-//        cell.imageLabel.image = weekInfo[indexPath.row].imageProperty
-//        cell.lowHighTempLabel.text = weekInfo[indexPath.row].temperature.description
+ //       cell.imageLabel.image = weatherInfo[indexPath.row].imageProperty
+     //   cell.lowHighTempLabel.text = weatherInfo[indexPath.row].temp.description
         
         return cell
     }
