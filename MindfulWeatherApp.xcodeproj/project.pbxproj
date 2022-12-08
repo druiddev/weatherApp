@@ -72,11 +72,11 @@
 			children = (
 				2653E1C6293AAD1500CD1925 /* AppDelegate.swift */,
 				2653E1C8293AAD1500CD1925 /* SceneDelegate.swift */,
-				2653E1CA293AAD1500CD1925 /* ViewController.swift */,
 				2653E1CC293AAD1500CD1925 /* Main.storyboard */,
 				2653E1CF293AAD1600CD1925 /* Assets.xcassets */,
 				2653E1D1293AAD1600CD1925 /* LaunchScreen.storyboard */,
 				2653E1D4293AAD1600CD1925 /* Info.plist */,
+				2653E1CA293AAD1500CD1925 /* ViewController.swift */,
 				2653E1DA293AB2B000CD1925 /* WeatherInfoEX.swift */,
 				2653E1DC293AB47800CD1925 /* Weather.swift */,
 				2653E1DE293ACC7800CD1925 /* CollectionViewCell.swift */,

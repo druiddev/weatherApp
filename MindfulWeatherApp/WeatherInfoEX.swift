@@ -75,7 +75,7 @@ extension ViewController {
                                     else {continue}
                                     
                                     weatherInfo.append(WeatherInfo(temp: temp, humidity: humidity, minTemp: minTemp, maxTemp: maxTemp, weatherID: id, mainDescription: mainDesc, description: desc, iconID: icon))
-                                    print(weatherInfo)
+                                    
                                     
                                 }
                             }

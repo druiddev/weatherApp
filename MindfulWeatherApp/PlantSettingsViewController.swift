@@ -9,21 +9,25 @@ import UIKit
 
 class PlantSettingsViewController: UIViewController {
 
+    
+    @IBOutlet var growthScaleSlider: UISlider!
+    @IBOutlet var tendPlantSwitch: UISegmentedControl!
+    @IBOutlet var plantDeathSwitch: UISegmentedControl!
+    @IBOutlet var respawnPlantButton: UIButton!
+    @IBOutlet var saveStoreButton: UIButton!
+    @IBOutlet var plantLocationSwitch: UISegmentedControl!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        //userdefaults and save when you go away and come back
+        
+        
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+ 
 
 }

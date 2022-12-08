@@ -36,8 +36,8 @@ extension ViewController {
                                   let name = object["name"] as? String
                             else {return}
                             
-                            locationInfo.append(Location(name: name))
-                                print(locationInfo)
+                            self.locationInfo.append(Location(name: name))
+                                
                         }
                     }
                 }
