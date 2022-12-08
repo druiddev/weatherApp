@@ -21,6 +21,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     var weatherInfo = [WeatherInfo]()
     var locationInfo = [Location]()
     let locationManager = CLLocationManager()
+    var latitude = 0.0
+    var longitude = 0.0
     var lat: CLLocationDegrees = 0.0
     var lon: CLLocationDegrees = 0.0
     var API = "405db7bf13ea449a2506f66752e029b5"
@@ -28,16 +30,20 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //json weather data
-        weatherInformation(atURL: "https://api.openweathermap.org/data/2.5/forecast?lat=\(lat)&lon=\(lon)&appid=\(API)&units=imperial")
-        
-        //location name based on lat and lon
-        reverseGeocoding(atURL: "https://api.openweathermap.org/geo/1.0/reverse?lat=\(lat)&lon=\(lon)&limit=5&appid=\(API)")
-        
-            daysCollectionView.reloadData()
         
         //location manager
         setupLocationManager()
+        
+    
+        
+//        //json weather data
+//        weatherInformation(atURL: "https://api.openweathermap.org/data/2.5/forecast?lat=\(lat)&lon=\(lon)&appid=\(API)&units=imperial")
+//        
+//        //location name based on lat and lon
+//        reverseGeocoding(atURL: "https://api.openweathermap.org/geo/1.0/reverse?lat=\(lat)&lon=\(lon)&limit=5&appid=\(API)")
+//        
+        daysCollectionView.reloadData()
+        
         
         for loc in locationInfo{
             locationLabel.text = loc.name
@@ -47,8 +53,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
             temperatureLabel.text = info.temp.description
             weatherDescriptionLabel.text = info.mainDescription
         }
+        
+    
     }
     
+   
+    
+  
     func setupLocationManager() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
@@ -63,13 +74,22 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
                 //if negative, its invaild
                 locationManager.stopUpdatingLocation()
                 //this is so it doesnt drain battery once location data is correct
-                
-                let longitude = location.coordinate.longitude
+                longitude = location.coordinate.longitude
+                latitude = location.coordinate.latitude
                 lon = (longitude*100).rounded()/100 //rounds it to two decimal places
-                print(lon)
-                let latitude = location.coordinate.latitude
                 lat = (latitude*100).rounded()/100
-                print(lat)
+                print(lon, lat)
+                //json weather data
+                weatherInformation(atURL: "https://api.openweathermap.org/data/2.5/forecast?lat=\(lat)&lon=\(lon)&appid=\(API)&units=imperial")
+                
+                //location name based on lat and lon
+                reverseGeocoding(atURL: "https://api.openweathermap.org/geo/1.0/reverse?lat=\(lat)&lon=\(lon)&limit=5&appid=\(API)")
+                
+                
+                
+                
+                
+             
                 print("longitude = \(longitude), latitude = \(latitude)")
             }
         }
