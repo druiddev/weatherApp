@@ -33,10 +33,11 @@ extension ViewController {
                     if let jsonObj = json{
                         for firstLevelItem in jsonObj {
                             guard let object = firstLevelItem as? [String: Any],
-                                  let name = object["name"] as? String
+                                  let city = object["name"] as? String,
+                                    let state = object["state"] as? String
                             else {return}
                             
-                            self.locationInfo.append(Location(name: name))
+                            self.locationInfo.append(Location(city: city, state: state))
                                 
                         }
                     }

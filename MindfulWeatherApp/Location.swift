@@ -9,10 +9,12 @@ import Foundation
 
 class Location {
     
-    var name: String
+    var city: String
+    var state: String
     
-    init(name: String) {
-        self.name = name
+    init(city: String, state: String) {
+        self.city = city
+        self.state = state
     }
     
     

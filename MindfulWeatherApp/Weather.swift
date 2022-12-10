@@ -18,8 +18,9 @@ class WeatherInfo {
     var mainDescription : String
     var description : String
     var iconID : String
+    var date: String
     
-    init(temp: Double, humidity: Int, minTemp: Double, maxTemp: Double, weatherID: Int, mainDescription: String, description: String, iconID: String) {
+    init(temp: Double, humidity: Int, minTemp: Double, maxTemp: Double, weatherID: Int, mainDescription: String, description: String, iconID: String, date: String) {
         self.temp = temp
         self.humidity = humidity
         self.minTemp = minTemp
@@ -28,6 +29,7 @@ class WeatherInfo {
         self.mainDescription = mainDescription
         self.description = description
         self.iconID = iconID
+        self.date = date
     }
     
     
@@ -52,6 +54,26 @@ class WeatherInfo {
         
     }
     
+    var minMaxTemp: String {
+        return "\(minTemp)/\(maxTemp)"
+        
+    }
     
-    
+    var dayOfDate: String {
+        
+        func getDayOfWeek(_ today:String) -> Int? {
+            let formatter  = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd"
+            guard let todayDate = formatter.date(from: today) else { return nil }
+            let myCalendar = Calendar(identifier: .gregorian)
+            let weekDay = myCalendar.component(.weekday, from: todayDate)
+            return weekDay
+        }
+        
+        
+        let weekday = getDayOfWeek(date)
+        return "\(weekday)"
+        
+        
+    }
 }

@@ -14,24 +14,7 @@ extension ViewController {
     //api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
     
     
-    func weatherInformation(atURL urlString: String) {
-//        let config = URLSessionConfiguration.default
-//        let session = URLSession(configuration: config)
-//        if let validURL = URL(string: urlString) {
-//            var request = URLRequest(url: validURL)
-//            request.setValue("405db7bf13ea449a2506f66752e029b5", forHTTPHeaderField: "X-API-Key")
-//            request.httpMethod = "GET"
-//            let task = session.dataTask(with: request, completionHandler: { [self](opt_data, opt_response, opt_error) in
-//
-//                if opt_error != nil { assertionFailure(); return }
-//
-//                //Check the response, statusCode, and data
-//                guard let response = opt_response as? HTTPURLResponse,
-//                      response.statusCode == 200,
-//                      let data = opt_data
-//                else { assertionFailure(); return
-//                }
-        
+    func weatherInformation(atURL urlString: String) { 
         
         let config = URLSessionConfiguration.default
         let session = URLSession(configuration: config)
@@ -73,8 +56,9 @@ extension ViewController {
                                           let desc = w["description"] as? String,
                                           let icon = w["icon"] as? String
                                     else {continue}
-                                    
-                                    weatherInfo.append(WeatherInfo(temp: temp, humidity: humidity, minTemp: minTemp, maxTemp: maxTemp, weatherID: id, mainDescription: mainDesc, description: desc, iconID: icon))
+                                guard let date = info["dt_txt"] as? String
+                                else {continue}
+                                    weatherInfo.append(WeatherInfo(temp: temp, humidity: humidity, minTemp: minTemp, maxTemp: maxTemp, weatherID: id, mainDescription: mainDesc, description: desc, iconID: icon, date: date))
                                     
                                     
                                 }

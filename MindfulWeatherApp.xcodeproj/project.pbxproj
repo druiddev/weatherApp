@@ -11,6 +11,7 @@
 		263C6D9A293FE9B300F2634A /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263C6D99293FE9B300F2634A /* Location.swift */; };
 		263C6D9C293FF35000F2634A /* PlantSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263C6D9B293FF35000F2634A /* PlantSettingsViewController.swift */; };
 		263C6D9E293FF36500F2634A /* WeatherSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263C6D9D293FF36500F2634A /* WeatherSettingsViewController.swift */; };
+		263EFA152943DB1400C5FDD4 /* userDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263EFA142943DB1400C5FDD4 /* userDefaults.swift */; };
 		2653E1C7293AAD1500CD1925 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2653E1C6293AAD1500CD1925 /* AppDelegate.swift */; };
 		2653E1C9293AAD1500CD1925 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2653E1C8293AAD1500CD1925 /* SceneDelegate.swift */; };
 		2653E1CB293AAD1500CD1925 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2653E1CA293AAD1500CD1925 /* ViewController.swift */; };
@@ -27,6 +28,7 @@
 		263C6D99293FE9B300F2634A /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		263C6D9B293FF35000F2634A /* PlantSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantSettingsViewController.swift; sourceTree = "<group>"; };
 		263C6D9D293FF36500F2634A /* WeatherSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherSettingsViewController.swift; sourceTree = "<group>"; };
+		263EFA142943DB1400C5FDD4 /* userDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userDefaults.swift; sourceTree = "<group>"; };
 		2653E1C3293AAD1500CD1925 /* MindfulWeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MindfulWeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2653E1C6293AAD1500CD1925 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2653E1C8293AAD1500CD1925 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 				263C6D99293FE9B300F2634A /* Location.swift */,
 				263C6D9B293FF35000F2634A /* PlantSettingsViewController.swift */,
 				263C6D9D293FF36500F2634A /* WeatherSettingsViewController.swift */,
+				263EFA142943DB1400C5FDD4 /* userDefaults.swift */,
 			);
 			path = MindfulWeatherApp;
 			sourceTree = "<group>";
@@ -163,6 +166,7 @@
 				263C6D9C293FF35000F2634A /* PlantSettingsViewController.swift in Sources */,
 				263C6D9E293FF36500F2634A /* WeatherSettingsViewController.swift in Sources */,
 				2653E1C7293AAD1500CD1925 /* AppDelegate.swift in Sources */,
+				263EFA152943DB1400C5FDD4 /* userDefaults.swift in Sources */,
 				263C6D9A293FE9B300F2634A /* Location.swift in Sources */,
 				2653E1DF293ACC7800CD1925 /* CollectionViewCell.swift in Sources */,
 				2653E1C9293AAD1500CD1925 /* SceneDelegate.swift in Sources */,

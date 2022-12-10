@@ -28,6 +28,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     var lon: CLLocationDegrees = 0.0
     var API = "405db7bf13ea449a2506f66752e029b5"
     let hour = Calendar.current.component(.hour, from: Date())
+    let day = Calendar.current.component(.day, from: Date())
     var currentDate = Date()
     let savedDate = UserDefaults.standard.value(forKey: "firstDate")
    // var plantGrowthCycleLength = 
@@ -55,23 +56,22 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
         //location manager
         setupLocationManager()
         
-//        //json weather data
-//        weatherInformation(atURL: "https://api.openweathermap.org/data/2.5/forecast?lat=\(lat)&lon=\(lon)&appid=\(API)&units=imperial")
-//        
-//        //location name based on lat and lon
-//        reverseGeocoding(atURL: "https://api.openweathermap.org/geo/1.0/reverse?lat=\(lat)&lon=\(lon)&limit=5&appid=\(API)")
-//        
+        
         daysCollectionView.reloadData()
         backgroundColorBasedOnTime()
+        
 
-    
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print(locationInfo)
+     
+        reloadDataInputs()
+    }
+    
+    func reloadDataInputs(){
+        
         for loc in locationInfo{
-            locationLabel.text = loc.name
-            print("kdksdjksdks" + loc.name)
+            locationLabel.text = "\(loc.city), \(loc.state)"
         }
         
         for info in weatherInfo {
@@ -79,12 +79,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
             weatherDescriptionLabel.text = info.mainDescription
         }
         
+        
     }
-    
   
     func setupLocationManager() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        
         //ask for this when plant is being created.
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
@@ -100,17 +101,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
                 latitude = location.coordinate.latitude
                 lon = (longitude*100).rounded()/100 //rounds it to two decimal places
                 lat = (latitude*100).rounded()/100
-                print(lon, lat)
-                //json weather data
-                weatherInformation(atURL: "https://api.openweathermap.org/data/2.5/forecast?lat=\(lat)&lon=\(lon)&appid=\(API)&units=imperial")
                 
+                //json weather data
+               weatherInformation(atURL: "https://api.openweathermap.org/data/2.5/forecast?lat=\(lat)&lon=\(lon)&appid=\(API)&units=imperial")
+
                 //location name based on lat and lon
                 reverseGeocoding(atURL: "https://api.openweathermap.org/geo/1.0/reverse?lat=\(lat)&lon=\(lon)&limit=5&appid=\(API)")
-              
-                print(locationInfo)
-                print(weatherInfo)
-             
-                print("longitude = \(longitude), latitude = \(latitude)")
+             reloadDataInputs()
             }
         }
     }
@@ -122,8 +119,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     func backgroundColorBasedOnTime(){
         switch hour{
         case 00...05:
-            view.backgroundColor = .black
-            daysCollectionView.backgroundColor = .black
+            view.backgroundColor = .gray
+            daysCollectionView.backgroundColor = .gray
         case 06...08:
             view.backgroundColor = .orange
             daysCollectionView.backgroundColor = .orange
@@ -137,8 +134,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
             view.backgroundColor = .orange
             daysCollectionView.backgroundColor = .orange
         case 21...23:
-            view.backgroundColor = .black
-            daysCollectionView.backgroundColor = .black
+            view.backgroundColor = .gray
+            daysCollectionView.backgroundColor = .gray
         default:
             view.backgroundColor = .blue
             
@@ -151,7 +148,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
         
         let diffInDays = Calendar.current.dateComponents([.day], from: savedDate as! Date, to: currentDate).day
         
-        //if settings is set to ten days
+        //if settings is set to ten days, cant die, inside and no tending
         switch diffInDays {
         case 1:
             //one day has passed
@@ -176,21 +173,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
             plantImageLabel.image = UIImage(named: "OrangeTree0")
         }
         
-        
-        
-        
     }
     
     
+    @IBAction func unwindToFirst(_ unwindSegue: UIStoryboardSegue) {
+        guard unwindSegue.source is PlantSettingsViewController else {return}}
+      
     
     
     
-    
-    
-    
-    
-    
-}
+    }
  
 
 extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -202,10 +194,11 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = daysCollectionView.dequeueReusableCell(withReuseIdentifier: "cell_ID_1", for: indexPath) as? CollectionViewCell else {return daysCollectionView.dequeueReusableCell(withReuseIdentifier: "cell_ID_1", for: indexPath)}
 
-      //  cell.dayLabel.text = locationInfo[indexPath.row].name
-       // cell.imageLabel.image = weatherInfo[indexPath.row].imageProperty
-      //  cell.lowHighTempLabel.text = weatherInfo[indexPath.row].temp.description
-        
+        if weatherInfo.isEmpty != true{
+            cell.dayLabel.text = weatherInfo[indexPath.row].date
+            cell.imageLabel.image = weatherInfo[indexPath.row].imageProperty
+            cell.lowHighTempLabel.text = weatherInfo[indexPath.row].minMaxTemp
+        }
         return cell
     }
     
