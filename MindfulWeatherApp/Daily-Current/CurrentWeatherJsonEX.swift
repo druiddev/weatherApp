@@ -77,6 +77,7 @@ extension ViewController{
                 DispatchQueue.main.async {
                     self.filterWeatherByDays()
                     self.daysCollectionView.reloadData()
+                    self.reloadDataInputs()
                 }
                 
                 

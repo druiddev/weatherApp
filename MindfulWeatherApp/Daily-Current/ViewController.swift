@@ -9,6 +9,9 @@ import UIKit
 import CoreLocation
 
 class ViewController: UIViewController, CLLocationManagerDelegate{
+    
+    
+    var searchController = UISearchController(searchResultsController: nil)
 
     
     @IBOutlet var locationLabel: UILabel!
@@ -17,7 +20,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     @IBOutlet var daysCollectionView: UICollectionView!
     @IBOutlet var viewBackground: UIView!
     @IBOutlet var weatherDescriptionLabel: UILabel!
- 
+    
     
     var dailyWeather = [DailyWeather]()
     var locationInfo = [Location]()
@@ -32,13 +35,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     let day = Calendar.current.component(.day, from: Date())
     var currentDate = Date()
     let savedDate = UserDefaults.standard.value(forKey: "firstDate")
-   // var plantGrowthCycleLength = 
-    var passedData:CLLocationManager?
+    // var plantGrowthCycleLength =
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-     
+        
         print(hour)
         
         if let firstOpen = UserDefaults.standard.object(forKey: "firstDate") as? Date {
@@ -51,16 +54,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
         //compares dates from when the last time you opened the app so you can see how much your plant grew in the time you were gone.
         //calculates how many days have elasped while the app was closed
         //let savedDate = UserDefaults.standard.value(forKey: "firstDate")
-       // let currentDate = Date()
-       // let diffInDays = Calendar.current.dateComponents([.day], from: savedDate as! Date, to: currentDate).day
-        
-        
-        if dailyWeather.isEmpty != true{
-            reloadDataInputs()
-        }
-        
-        
-        
+        // let currentDate = Date()
+        // let diffInDays = Calendar.current.dateComponents([.day], from: savedDate as! Date, to: currentDate).day
+ 
         
         
         //location manager
@@ -70,11 +66,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
         daysCollectionView.reloadData()
         backgroundColorBasedOnTime()
         plantgrowth()
-
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
-     
+        
         reloadDataInputs()
     }
     
@@ -92,7 +88,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
         
         
     }
-  
+    
     func setupLocationManager() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
@@ -114,11 +110,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
                 lat = (latitude*100).rounded()/100
                 
                 //json weather data
-               weatherInformation(atURL: "https://api.openweathermap.org/data/2.5/forecast?lat=\(lat)&lon=\(lon)&appid=\(API)&units=imperial")
-
+                weatherInformation(atURL: "https://api.openweathermap.org/data/2.5/forecast?lat=\(lat)&lon=\(lon)&appid=\(API)&units=imperial")
+                
                 //location name based on lat and lon
                 reverseGeocoding(atURL: "https://api.openweathermap.org/geo/1.0/reverse?lat=\(lat)&lon=\(lon)&limit=5&appid=\(API)")
-             reloadDataInputs()
             }
         }
     }
@@ -153,7 +148,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
         }
     }
     
-
+    
     
     @IBAction func weatherSettings(_ sender: Any) {
         
@@ -163,20 +158,20 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     }
     
     func uniqueElementsFrom(array: [String]) -> [String] {
-      //Create an empty Set to track unique items
-      var set = Set<String>()
-      let result = array.filter {
-        guard !set.contains($0) else {
-          //If the set already contains this object, return false
-          //so we skip it
-          return false
+        //Create an empty Set to track unique items
+        var set = Set<String>()
+        let result = array.filter {
+            guard !set.contains($0) else {
+                //If the set already contains this object, return false
+                //so we skip it
+                return false
+            }
+            //Add this item to the set since it will now be in the array
+            set.insert($0)
+            //Return true so that filtered array will contain this item.
+            return true
         }
-        //Add this item to the set since it will now be in the array
-        set.insert($0)
-        //Return true so that filtered array will contain this item.
-        return true
-      }
-      return result
+        return result
     }
     
     func plantgrowth(){
@@ -215,38 +210,37 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
         guard unwindSegue.source is PlantSettingsViewController else {return}
         
     }
-      
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goTo3Hour" {
             guard segue.destination is ThreeHourViewController else {return}
-                    
-                   // threeHourVC.weatherInfo = weatherInfo
+            
+            // threeHourVC.weatherInfo = weatherInfo
             //threeHourVC.locationData = passedData
             
-
-                }
-    }
-    
-    }
-
-
-
- 
-
-extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return filteredToDays[section].count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = daysCollectionView.dequeueReusableCell(withReuseIdentifier: "cell_ID_1", for: indexPath) as? CollectionViewCell else {return daysCollectionView.dequeueReusableCell(withReuseIdentifier: "cell_ID_1", for: indexPath)}
-
-        let currentCell = filteredToDays[indexPath.section][indexPath.row]
+        }
         
-        if dailyWeather.isEmpty != true{
-            
-            let stringDay = dailyWeather[indexPath.row].dateString.suffix(2)
+    }
+    
+}
+
+
+   
+
+  extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+      
+      func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+          return filteredToDays[section].count
+      }
+      
+      func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+          guard let cell = daysCollectionView.dequeueReusableCell(withReuseIdentifier: "cell_ID_1", for: indexPath) as? CollectionViewCell else {return daysCollectionView.dequeueReusableCell(withReuseIdentifier: "cell_ID_1", for: indexPath)}
+
+          let currentCell = filteredToDays[indexPath.section][indexPath.row]
+          
+          if dailyWeather.isEmpty != true{
+              
+             // let stringDay = dailyWeather[indexPath.row].dateString.suffix(2)
         
             
             cell.dayLabel.text = currentCell.dateString
