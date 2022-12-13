@@ -2,12 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>We need your location to help your plant grow!</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Only for weather access when app is open. Plant will also grow here but only when app is running</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Location for plant to be able to grow all the time, and for widget to show plant and weather real time</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

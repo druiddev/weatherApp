@@ -17,10 +17,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     @IBOutlet var daysCollectionView: UICollectionView!
     @IBOutlet var viewBackground: UIView!
     @IBOutlet var weatherDescriptionLabel: UILabel!
+ 
     
-    var weatherInfo = [WeatherInfo]()
+    var dailyWeather = [DailyWeather]()
     var locationInfo = [Location]()
-    var locationData: Location!
+    var filteredToDays = [[DailyWeather](), [DailyWeather](), [DailyWeather](), [DailyWeather](), [DailyWeather]()]
     let locationManager = CLLocationManager()
     var latitude = 0.0
     var longitude = 0.0
@@ -32,6 +33,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     var currentDate = Date()
     let savedDate = UserDefaults.standard.value(forKey: "firstDate")
    // var plantGrowthCycleLength = 
+    var passedData:CLLocationManager?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,13 +55,21 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
        // let diffInDays = Calendar.current.dateComponents([.day], from: savedDate as! Date, to: currentDate).day
         
         
+        if dailyWeather.isEmpty != true{
+            reloadDataInputs()
+        }
+        
+        
+        
+        
+        
         //location manager
         setupLocationManager()
         
         
         daysCollectionView.reloadData()
         backgroundColorBasedOnTime()
-        
+        plantgrowth()
 
     }
     
@@ -74,9 +84,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
             locationLabel.text = "\(loc.city), \(loc.state)"
         }
         
-        for info in weatherInfo {
-            temperatureLabel.text = info.temp.description
-            weatherDescriptionLabel.text = info.mainDescription
+        for info in dailyWeather {
+            var t = String(info.temp.description).dropLast(3)
+            temperatureLabel.text = "\(t)°"
+            weatherDescriptionLabel.text = info.weatherDescLabelText
         }
         
         
@@ -144,6 +155,30 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     
 
     
+    @IBAction func weatherSettings(_ sender: Any) {
+        
+        performSegue(withIdentifier: "goTo3Hour", sender: self)
+        
+        
+    }
+    
+    func uniqueElementsFrom(array: [String]) -> [String] {
+      //Create an empty Set to track unique items
+      var set = Set<String>()
+      let result = array.filter {
+        guard !set.contains($0) else {
+          //If the set already contains this object, return false
+          //so we skip it
+          return false
+        }
+        //Add this item to the set since it will now be in the array
+        set.insert($0)
+        //Return true so that filtered array will contain this item.
+        return true
+      }
+      return result
+    }
+    
     func plantgrowth(){
         
         let diffInDays = Calendar.current.dateComponents([.day], from: savedDate as! Date, to: currentDate).day
@@ -177,27 +212,47 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     
     
     @IBAction func unwindToFirst(_ unwindSegue: UIStoryboardSegue) {
-        guard unwindSegue.source is PlantSettingsViewController else {return}}
+        guard unwindSegue.source is PlantSettingsViewController else {return}
+        
+    }
       
-    
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goTo3Hour" {
+            guard segue.destination is ThreeHourViewController else {return}
+                    
+                   // threeHourVC.weatherInfo = weatherInfo
+            //threeHourVC.locationData = passedData
+            
+
+                }
+    }
     
     }
+
+
+
  
 
 extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 14
+        return filteredToDays[section].count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = daysCollectionView.dequeueReusableCell(withReuseIdentifier: "cell_ID_1", for: indexPath) as? CollectionViewCell else {return daysCollectionView.dequeueReusableCell(withReuseIdentifier: "cell_ID_1", for: indexPath)}
 
-        if weatherInfo.isEmpty != true{
-            cell.dayLabel.text = weatherInfo[indexPath.row].date
-            cell.imageLabel.image = weatherInfo[indexPath.row].imageProperty
-            cell.lowHighTempLabel.text = weatherInfo[indexPath.row].minMaxTemp
+        let currentCell = filteredToDays[indexPath.section][indexPath.row]
+        
+        if dailyWeather.isEmpty != true{
+            
+            let stringDay = dailyWeather[indexPath.row].dateString.suffix(2)
+        
+            
+            cell.dayLabel.text = currentCell.dateString
+            cell.imageLabel.image = currentCell.imageProperty
+            cell.avgTemp.text = currentCell.tempString
+            cell.humidityLabel.text = currentCell.humidityString
         }
         return cell
     }

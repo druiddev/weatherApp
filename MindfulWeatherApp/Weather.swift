@@ -55,25 +55,84 @@ class WeatherInfo {
     }
     
     var minMaxTemp: String {
-        return "\(minTemp)/\(maxTemp)"
+        return "Low: \(minTemp) \nHigh: \(maxTemp)"
         
     }
     
+    var weatherDescLabelText: String {
+        return "\(mainDescription): \(description)"
+    }
+    
+    
+    
     var dayOfDate: String {
+        //takes away the year and the minutes and seconds
+        var newDateString = date.dropFirst(5)
+        newDateString = date.dropLast(6)
+  
+        var noHourString = newDateString.dropLast(2).dropFirst(5)
         
-        func getDayOfWeek(_ today:String) -> Int? {
-            let formatter  = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd"
-            guard let todayDate = formatter.date(from: today) else { return nil }
-            let myCalendar = Calendar(identifier: .gregorian)
-            let weekDay = myCalendar.component(.weekday, from: todayDate)
-            return weekDay
+        
+        func hourLabelString(string: String)->String{
+            let stringHour = String(string.suffix(2))
+            switch stringHour {
+            case "00":
+                return " 12 AM"
+            case "01":
+                return "1 AM"
+            case "02":
+                return "2 AM"
+            case "03":
+                return "3 AM"
+            case "04":
+                return "4 AM"
+            case "05":
+                return "5 AM"
+            case "06":
+                return "6 AM"
+            case "07":
+                return "7 AM"
+            case "08":
+                return "8 AM"
+            case "09":
+                return "9 AM"
+            case "10":
+                return "10 AM"
+            case "11":
+                return "11 AM"
+            case "12":
+                return "12 PM"
+            case "13":
+                return "1 PM"
+            case "14":
+                return "2 PM"
+            case "15":
+                return "3 PM"
+            case "16":
+                return "4 PM"
+            case "17":
+                return "5 PM"
+            case "18":
+                return "6 PM"
+            case "19":
+                return "7 PM"
+            case "20":
+                return "8 PM"
+            case "21":
+                return "9 PM"
+            case "22":
+                return "10 PM"
+            case "23":
+                return "11 PM"
+            default:
+                return ""
+            }
         }
         
         
-        let weekday = getDayOfWeek(date)
-        return "\(weekday)"
         
-        
+        return "\(noHourString) \n\(hourLabelString(string: String(newDateString)))"
     }
+    
+ 
 }

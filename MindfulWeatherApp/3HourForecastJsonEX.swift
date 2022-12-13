@@ -8,7 +8,7 @@
 import Foundation
 
 
-extension ViewController {
+extension ThreeHourViewController{
     
     //405db7bf13ea449a2506f66752e029b5
     //api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
@@ -31,7 +31,6 @@ extension ViewController {
                       let data = opt_data
                 else { assertionFailure(); return
                 }
-        
         
         
                 do {
@@ -72,7 +71,7 @@ extension ViewController {
                 }
                 
                 DispatchQueue.main.async {
-                    self.daysCollectionView.reloadData()
+                    self.threeHourCollectionView.reloadData()
                 }
                 
                 

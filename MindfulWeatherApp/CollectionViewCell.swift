@@ -11,7 +11,7 @@ class CollectionViewCell: UICollectionViewCell {
     
     @IBOutlet var dayLabel: UILabel!
     @IBOutlet var imageLabel: UIImageView!
-    @IBOutlet var lowHighTempLabel: UILabel!
-    
+    @IBOutlet var humidityLabel: UILabel!
+    @IBOutlet var avgTemp: UILabel!
     
 }
