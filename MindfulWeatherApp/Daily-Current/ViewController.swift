@@ -35,7 +35,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     let day = Calendar.current.component(.day, from: Date())
     var currentDate = Date()
     let savedDate = UserDefaults.standard.value(forKey: "firstDate")
-    // var plantGrowthCycleLength =
+    var plantGrowthLength = 10
+    var tend = true
+    var wither = true
+    var housePlant = true
     
     
     override func viewDidLoad() {
@@ -50,6 +53,30 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
             // This is the first launch
             UserDefaults.standard.set(Date(), forKey: "firstDate")
         }
+        
+        
+        if let growthTimePlantSetting = UserDefaults.standard.object(forKey: "growthLength") {
+            plantGrowthLength = growthTimePlantSetting as! Int
+        }
+        
+        if let tendPlantSetting = UserDefaults.standard.object(forKey: "tend") {
+            tend = tendPlantSetting
+        }
+        
+        if let witherPlantSetting = UserDefaults.standard.object(forKey: "wither") {
+            wither = witherPlantSetting
+        }
+        
+        if let locationPlantSetting = UserDefaults.standard.object(forKey: "plantLocation") {
+            housePlant = locationPlantSetting
+        }
+        
+        
+        
+        
+        
+        
+        
         
         //compares dates from when the last time you opened the app so you can see how much your plant grew in the time you were gone.
         //calculates how many days have elasped while the app was closed
@@ -179,32 +206,33 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
         let diffInDays = Calendar.current.dateComponents([.day], from: savedDate as! Date, to: currentDate).day
         
         //if settings is set to ten days, cant die, inside and no tending
-        switch diffInDays {
-        case 1:
-            //one day has passed
-            plantImageLabel.image = UIImage(named: "OrangeTree1")
-        case 2:
-            plantImageLabel.image = UIImage(named: "OrangeTree2")
-        case 3:
-            plantImageLabel.image = UIImage(named: "OrangeTree3")
-        case 4:
-            plantImageLabel.image = UIImage(named: "OrangeTree4")
-        case 5:
-            plantImageLabel.image = UIImage(named: "OrangeTree5")
-        case 6:
-            plantImageLabel.image = UIImage(named: "OrangeTree6")
-        case 7:
-            plantImageLabel.image = UIImage(named: "OrangeTree7")
-        case 8:
-            plantImageLabel.image = UIImage(named: "OrangeTree8")
-        case 9:
-            plantImageLabel.image = UIImage(named: "OrangeTree9")
-        default:
-            plantImageLabel.image = UIImage(named: "OrangeTree0")
+        if plantGrowthLength == 10 && tend == true && wither == false && housePlant == true{
+            switch diffInDays {
+            case 1:
+                //one day has passed
+                plantImageLabel.image = UIImage(named: "OrangeTree1")
+            case 2:
+                plantImageLabel.image = UIImage(named: "OrangeTree2")
+            case 3:
+                plantImageLabel.image = UIImage(named: "OrangeTree3")
+            case 4:
+                plantImageLabel.image = UIImage(named: "OrangeTree4")
+            case 5:
+                plantImageLabel.image = UIImage(named: "OrangeTree5")
+            case 6:
+                plantImageLabel.image = UIImage(named: "OrangeTree6")
+            case 7:
+                plantImageLabel.image = UIImage(named: "OrangeTree7")
+            case 8:
+                plantImageLabel.image = UIImage(named: "OrangeTree8")
+            case 9:
+                plantImageLabel.image = UIImage(named: "OrangeTree9")
+            default:
+                plantImageLabel.image = UIImage(named: "OrangeTree0")
+            }
+            
         }
-        
     }
-    
     
     @IBAction func unwindToFirst(_ unwindSegue: UIStoryboardSegue) {
         guard unwindSegue.source is PlantSettingsViewController else {return}

@@ -10,12 +10,12 @@ import UIKit
 class PlantSettingsViewController: UIViewController {
     
     
-    @IBOutlet var growthScaleSlider: UISlider!
     @IBOutlet var tendPlantSwitch: UISegmentedControl!
     @IBOutlet var plantDeathSwitch: UISegmentedControl!
     @IBOutlet var respawnPlantButton: UIButton!
     @IBOutlet var saveStoreButton: UIButton!
     @IBOutlet var plantLocationSwitch: UISegmentedControl!
+    @IBOutlet var growthSwitch: UISegmentedControl!
     
     
     
@@ -44,11 +44,11 @@ class PlantSettingsViewController: UIViewController {
     @IBAction func plantDeathSwitchChanged(_ sender: Any) {
         if plantDeathSwitch.isEnabledForSegment(at: 0) == true{
             //set to true
-            UserDefaults.standard.set(true, forKey: "plantDeath")
+            UserDefaults.standard.set(true, forKey: "wither")
         }
         else{
             //set to false
-            UserDefaults.standard.set(false, forKey: "plantDeath")
+            UserDefaults.standard.set(false, forKey: "wither")
         }
     }
     
@@ -64,9 +64,30 @@ class PlantSettingsViewController: UIViewController {
         }
         
     }
+
     
-    
-    
+    @IBAction func growthSwitchChanged(_ sender: Any) {
+        var day = 0
+        
+        if growthSwitch.isEnabledForSegment(at: 0) == true{
+            day = 10
+            UserDefaults.standard.set(day, forKey: "growthLength")
+        } else if growthSwitch.isEnabledForSegment(at: 1) == true{
+            day = 20
+            UserDefaults.standard.set(day, forKey: "growthLength")
+        } else if growthSwitch.isEnabledForSegment(at: 2) == true{
+            day = 40
+            UserDefaults.standard.set(day, forKey: "growthLength")
+        } else if growthSwitch.isEnabledForSegment(at: 3) == true{
+            day = 80
+            UserDefaults.standard.set(day, forKey: "growthLength")
+        } else if growthSwitch.isEnabledForSegment(at: 4) == true{
+            day = 160
+            UserDefaults.standard.set(day, forKey: "growthLength")
+        }
+   
+        
+    }
     
     
     

@@ -267,10 +267,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="10" maxValue="90" translatesAutoresizingMaskIntoConstraints="NO" id="e8C-8F-3Yx">
-                                <rect key="frame" x="82" y="180" width="228" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </slider>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="sK3-Ru-Nnu">
                                 <rect key="frame" x="157" y="290" width="81" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -306,20 +302,6 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Respawn"/>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="10 Days" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UqN-Pu-lRz">
-                                <rect key="frame" x="28" y="184" width="48" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="90 Days" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Za4-we-Lbc">
-                                <rect key="frame" x="316" y="184" width="51" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Where Does Plant Live?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VyG-w7-utS">
                                 <rect key="frame" x="97" y="418" width="199" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -351,6 +333,20 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Save and Store"/>
                             </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="yFp-rz-bcd">
+                                <rect key="frame" x="32" y="180" width="331" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="10 Days"/>
+                                    <segment title="20 Days"/>
+                                    <segment title="40 Days"/>
+                                    <segment title="80 Days"/>
+                                    <segment title="160 Days"/>
+                                </segments>
+                                <connections>
+                                    <action selector="growthSwitchChanged:" destination="eHn-Bc-rGC" eventType="valueChanged" id="Hn2-vN-FIo"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Gjw-uF-uV3"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -363,7 +359,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="growthScaleSlider" destination="e8C-8F-3Yx" id="C3x-Es-5JY"/>
+                        <outlet property="growthSwitch" destination="yFp-rz-bcd" id="sVD-cE-bVA"/>
                         <outlet property="plantDeathSwitch" destination="IaG-0K-19U" id="Asg-Dg-acW"/>
                         <outlet property="plantLocationSwitch" destination="76G-nu-r0B" id="xTg-G7-jZd"/>
                         <outlet property="respawnPlantButton" destination="fA5-eN-5zC" id="4de-Dh-Xzh"/>
