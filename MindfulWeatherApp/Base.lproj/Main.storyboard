@@ -152,12 +152,12 @@
                                 <rect key="frame" x="31" y="227" width="331" height="353"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="inside" translatesAutoresizingMaskIntoConstraints="NO" id="yJ0-es-S9v">
-                                <rect key="frame" x="31" y="227" width="331" height="353"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="inside" translatesAutoresizingMaskIntoConstraints="NO" id="yJ0-es-S9v">
+                                <rect key="frame" x="31" y="227" width="331" height="383"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="OrangeTree0" translatesAutoresizingMaskIntoConstraints="NO" id="DD8-kh-juk">
-                                <rect key="frame" x="31" y="227" width="331" height="353"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="OrangeTree9" translatesAutoresizingMaskIntoConstraints="NO" id="DD8-kh-juk">
+                                <rect key="frame" x="52" y="227" width="301" height="353"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
@@ -170,7 +170,7 @@
                             <barButtonItem title="Plant Settings" image="plantInHand" id="pVS-MW-cIB">
                                 <color key="tintColor" red="0.028300382650000001" green="0.0" blue="0.11973852040000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <segue destination="eHn-Bc-rGC" kind="show" id="fzp-xv-llX"/>
+                                    <segue destination="eHn-Bc-rGC" kind="show" identifier="gotoPlant" id="fzp-xv-llX"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem title="Item" id="cti-uv-aPB">
@@ -615,7 +615,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="OrangeTree0" width="500" height="500"/>
+        <image name="OrangeTree9" width="500" height="500"/>
         <image name="inside" width="250" height="250"/>
         <image name="location" catalog="system" width="128" height="121"/>
         <image name="outside" width="250" height="250"/>

@@ -63,7 +63,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
         //location manager
         setupLocationManager()
         
-        
+        daysCollectionView.backgroundColor = .clear
         daysCollectionView.reloadData()
         backgroundColorBasedOnTime()
         plantgrowth()
@@ -157,22 +157,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
         switch hour{
         case 00...05:
             setNightColors()
-            daysCollectionView.backgroundColor = .gray
         case 06...08:
             setSunriseColors()
-            daysCollectionView.backgroundColor = .orange
         case 09...12:
             setMorningColors()
-            daysCollectionView.backgroundColor = .blue
         case 13...17:
             setMiddayColors()
-            daysCollectionView.backgroundColor = .clear
         case 18...20:
             setSunsetColors()
-            daysCollectionView.backgroundColor = .orange
         case 21...23:
             setNightColors()
-            daysCollectionView.backgroundColor = .gray
         default:
             view.backgroundColor = .blue
             
@@ -183,7 +177,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     
     @IBAction func searchButton(_ sender: Any) {
         
-            searchInput = searchBar.text!
+        //makes what the user types, the new info for parsing, then re does the views. removes the spaces if they type any also
+            searchInput = String(searchBar.text!.filter { !" \n\t\r".contains($0) })
         
             if searchInput.isEmpty != true {
                 parseJson()
@@ -331,20 +326,35 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     @IBAction func locationButton(_ sender: Any) {
         //using the cclocation button causes a bug crash :(
         
+        if dailyWeather.isEmpty != true { //if its not empty
+            //searchResult = "\(lat),\(lon)"
+            //parseJson()
+            
+        }
     }
     
     
     @IBAction func unwindToFirst(_ unwindSegue: UIStoryboardSegue) {
-        guard unwindSegue.source is PlantSettingsViewController else {return}
+        guard let plantVC = unwindSegue.source as? PlantSettingsViewController else {return}
+        guard let threeHourVC = unwindSegue.source as? ThreeHourViewController else {return}
+        
+        
+        
         
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "goTo3Hour" {
-            //guard let threeHourVC =
+        if segue.identifier == "gotoPlant" {
+            guard let plantVC = segue.destination as? PlantSettingsViewController else {return}
+            //guard let threeHourVC = segue.destination as? ThreeHourViewController else {return}
+                        
             
-            // threeHourVC.weatherInfo = weatherInfo
-            //threeHourVC.locationData = passedData
+           // plantVC.plantDeathSwitch.
+            
+            
+                        //adding the values entered to the temp array on second controller
+                        //secondVC.tempArray = arrayOfStrings
+
             
         }
         
