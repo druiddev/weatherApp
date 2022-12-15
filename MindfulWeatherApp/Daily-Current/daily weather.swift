@@ -92,6 +92,17 @@ class DailyWeather {
    
        }
 
+        var dateString: String {
+            return "\(date.dropFirst(5))"
+        }
+    
+        var humidityString: String {
+            return "Humidity: \(dailyHumidity)%"
+        }
+    
+        var tempString: String{
+            return "\(dailyTemp.description.dropLast(2))°"
+        }
     
     
     

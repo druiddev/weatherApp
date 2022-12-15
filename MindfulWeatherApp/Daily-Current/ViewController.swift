@@ -17,10 +17,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     @IBOutlet var locationLabel: UILabel!
     @IBOutlet var temperatureLabel: UILabel!
     @IBOutlet var plantImageLabel: UIImageView!
+    @IBOutlet var insideImageLabel: UIImageView!
+    @IBOutlet var outsideImageLabel: UIImageView!
     @IBOutlet var daysCollectionView: UICollectionView!
     @IBOutlet var viewBackground: UIView!
     @IBOutlet var weatherDescriptionLabel: UILabel!
-    
+    @IBOutlet var searchButton: UIBarButtonItem!
+    @IBOutlet var searchBar: UITextField!
     
     var dailyWeather = [DailyWeather]()
     var locationInfo = [Location]()
@@ -35,16 +38,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     var currentDate = Date()
     let savedDate = UserDefaults.standard.value(forKey: "firstDate")
     var plantGrowthLength = 10
-    var tend = true
-    var wither = true
+    var tend = false
+    var wither = false
     var housePlant = true
+    var searchInput = "16648"
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        print(hour)
+       
         
         //user defaults
         if let firstOpen = UserDefaults.standard.object(forKey: "firstDate") as? Date {
@@ -54,21 +57,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
             UserDefaults.standard.set(Date(), forKey: "firstDate")
         }
         
-        if let growthTimePlantSetting = UserDefaults.standard.object(forKey: "growthLength") {
-            plantGrowthLength = growthTimePlantSetting as! Int
-        }
-        
-        if let tendPlantSetting = UserDefaults.standard.object(forKey: "tend") {
-            tend = tendPlantSetting as! Bool
-        }
-        
-        if let witherPlantSetting = UserDefaults.standard.object(forKey: "wither") {
-            wither = witherPlantSetting as! Bool
-        }
-        
-        if let locationPlantSetting = UserDefaults.standard.object(forKey: "plantLocation") {
-            housePlant = locationPlantSetting as! Bool
-        }
+        userDefaultsSavedInfo()
         
      
         //location manager
@@ -84,7 +73,29 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     override func viewWillAppear(_ animated: Bool) {
         daysCollectionView.reloadData()
         reloadDataInputs()
+        userDefaultsSavedInfo()
     }
+    
+    func userDefaultsSavedInfo(){
+        if let growthTimePlantSetting = UserDefaults.standard.object(forKey: "growthLength") {
+            plantGrowthLength = growthTimePlantSetting as! Int
+        }
+        
+        if let tendPlantSetting = UserDefaults.standard.object(forKey: "tend") {
+            tend = tendPlantSetting as! Bool
+        }
+        
+        if let witherPlantSetting = UserDefaults.standard.object(forKey: "wither") {
+            wither = witherPlantSetting as! Bool
+        }
+        
+        if let locationPlantSetting = UserDefaults.standard.object(forKey: "plantLocation") {
+            housePlant = locationPlantSetting as! Bool
+        }
+    }
+    
+    
+    
     
     func reloadDataInputs(){
         
@@ -123,13 +134,20 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
                 lat = (latitude*100).rounded()/100
                 print("\(lat),\(lon)")
                 //json weather data
-                weatherInformation(atURL: "https://api.weatherapi.com/v1/forecast.json?key=5e27e4e054a04ba8b83220852221412&q=\(lat),\(lon)&days=10&aqi=no&alerts=no")
-                
-                //location name based on lat and lon
-                reverseGeocoding(atURL: "https://api.openweathermap.org/geo/1.0/reverse?lat=\(lat)&lon=\(lon)&limit=5&appid=\(API)")
+                var searchInput = "\(lat),\(lon)"
+                parseJson()
             }
         }
     }
+    
+    func parseJson(){
+        weatherInformation(atURL: "https://api.weatherapi.com/v1/forecast.json?key=5e27e4e054a04ba8b83220852221412&q=\(searchInput)&days=10&aqi=no&alerts=no")
+        
+        //location name based on lat and lon
+        reverseGeocoding(atURL: "https://api.openweathermap.org/geo/1.0/reverse?lat=\(lat)&lon=\(lon)&limit=5&appid=\(API)")
+    }
+    
+    
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Location update failed, \(error)")
@@ -161,6 +179,23 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
         }
     }
     
+
+    
+    @IBAction func searchButton(_ sender: Any) {
+        
+            searchInput = searchBar.text!
+        
+            if searchInput.isEmpty != true {
+                parseJson()
+                reloadDataInputs()
+                daysCollectionView.reloadData()
+            }
+       
+
+    }
+    
+    
+    
     
     
     @IBAction func weatherSettings(_ sender: Any) {
@@ -191,8 +226,19 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
         
         let diffInDays = Calendar.current.dateComponents([.day], from: savedDate as! Date, to: currentDate).day
         
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         //if settings is set to ten days, cant die, inside and no tending
-        if plantGrowthLength == 10 && tend == true && wither == false && housePlant == true{
+        if plantGrowthLength == 10 && tend == false && wither == false && housePlant == true{
             switch diffInDays {
             case 1:
                 //one day has passed
@@ -251,13 +297,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
           guard let cell = daysCollectionView.dequeueReusableCell(withReuseIdentifier: "cell_ID_1", for: indexPath) as? CollectionViewCell else {return daysCollectionView.dequeueReusableCell(withReuseIdentifier: "cell_ID_1", for: indexPath)}
           
           if dailyWeather.isEmpty != true{
-              print("hi")
-              cell.dayLabel.text = dailyWeather[indexPath.row].dailyDesc
+              cell.dayLabel.text = dailyWeather[indexPath.row].dateString
               cell.imageLabel.image = dailyWeather[indexPath.row].imageProperty
-              cell.avgTemp.text = dailyWeather[indexPath.row].dailyTemp.description
-              cell.humidityLabel.text = dailyWeather[indexPath.row].dailyHumidity.description
-          } else {
-              print("i am empty")
+              cell.avgTemp.text = dailyWeather[indexPath.row].tempString
+              cell.humidityLabel.text = dailyWeather[indexPath.row].humidityString
+              cell.descLabel.text = dailyWeather[indexPath.row].dailyDesc
           }
         return cell
     }

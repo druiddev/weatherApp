@@ -23,10 +23,10 @@ class PlantSettingsViewController: UIViewController {
         super.viewDidLoad()
         
         //userdefaults and save when you go away and come back
-        let tendStatus = UserDefaults.standard.bool(forKey: "tend")
-        let deathStatus = UserDefaults.standard.bool(forKey: "plantDeath")
-        let locationStatus = UserDefaults.standard.bool(forKey: "plantLocation")
-        
+        UserDefaults.standard.bool(forKey: "tend")
+        UserDefaults.standard.bool(forKey: "plantDeath")
+        UserDefaults.standard.bool(forKey: "plantLocation")
+        UserDefaults.standard.bool(forKey: "growthLength")
         
         
 //        if let growthTimePlantSetting = UserDefaults.standard.object(forKey: "growthLength") {

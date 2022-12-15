@@ -13,5 +13,5 @@ class CollectionViewCell: UICollectionViewCell {
     @IBOutlet var imageLabel: UIImageView!
     @IBOutlet var humidityLabel: UILabel!
     @IBOutlet var avgTemp: UILabel!
-    
+    @IBOutlet var descLabel: UILabel!
 }
