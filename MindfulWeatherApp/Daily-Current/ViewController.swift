@@ -156,22 +156,22 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     func backgroundColorBasedOnTime(){
         switch hour{
         case 00...05:
-            view.backgroundColor = .gray
+            setNightColors()
             daysCollectionView.backgroundColor = .gray
         case 06...08:
-            view.backgroundColor = .orange
+            setSunriseColors()
             daysCollectionView.backgroundColor = .orange
         case 09...12:
-            view.backgroundColor = .blue
+            setMorningColors()
             daysCollectionView.backgroundColor = .blue
         case 13...17:
-            view.backgroundColor = .systemBlue
-            daysCollectionView.backgroundColor = .systemBlue
+            setMiddayColors()
+            daysCollectionView.backgroundColor = .clear
         case 18...20:
-            view.backgroundColor = .orange
+            setSunsetColors()
             daysCollectionView.backgroundColor = .orange
         case 21...23:
-            view.backgroundColor = .gray
+            setNightColors()
             daysCollectionView.backgroundColor = .gray
         default:
             view.backgroundColor = .blue
@@ -224,47 +224,115 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     
     func plantgrowth(){
         
-        let diffInDays = Calendar.current.dateComponents([.day], from: savedDate as! Date, to: currentDate).day
-        
-      
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        //if settings is set to ten days, cant die, inside and no tending
-        if plantGrowthLength == 10 && tend == false && wither == false && housePlant == true{
-            switch diffInDays {
-            case 1:
-                //one day has passed
-                plantImageLabel.image = UIImage(named: "OrangeTree1")
-            case 2:
-                plantImageLabel.image = UIImage(named: "OrangeTree2")
-            case 3:
-                plantImageLabel.image = UIImage(named: "OrangeTree3")
-            case 4:
-                plantImageLabel.image = UIImage(named: "OrangeTree4")
-            case 5:
-                plantImageLabel.image = UIImage(named: "OrangeTree5")
-            case 6:
-                plantImageLabel.image = UIImage(named: "OrangeTree6")
-            case 7:
-                plantImageLabel.image = UIImage(named: "OrangeTree7")
-            case 8:
-                plantImageLabel.image = UIImage(named: "OrangeTree8")
-            case 9:
-                plantImageLabel.image = UIImage(named: "OrangeTree9")
-            default:
-                plantImageLabel.image = UIImage(named: "OrangeTree0")
-            }
+        if savedDate != nil {
+            let diffInDays = Calendar.current.dateComponents([.day], from: savedDate as! Date, to: currentDate).day
             
+            
+            
+            //if settings is set to ten days, cant die, inside and no tending
+            if plantGrowthLength == 10 && tend == false && wither == false && housePlant == true{
+                switch diffInDays {
+                case 1:
+                    //one day has passed
+                    plantImageLabel.image = UIImage(named: "OrangeTree1")
+                case 2:
+                    plantImageLabel.image = UIImage(named: "OrangeTree2")
+                case 3:
+                    plantImageLabel.image = UIImage(named: "OrangeTree3")
+                case 4:
+                    plantImageLabel.image = UIImage(named: "OrangeTree4")
+                case 5:
+                    plantImageLabel.image = UIImage(named: "OrangeTree5")
+                case 6:
+                    plantImageLabel.image = UIImage(named: "OrangeTree6")
+                case 7:
+                    plantImageLabel.image = UIImage(named: "OrangeTree7")
+                case 8:
+                    plantImageLabel.image = UIImage(named: "OrangeTree8")
+                case 9:
+                    plantImageLabel.image = UIImage(named: "OrangeTree9")
+                default:
+                    plantImageLabel.image = UIImage(named: "OrangeTree0")
+                }
+                
+            }
         }
     }
+    
+    
+    func setSunriseColors() {
+        let colorTop =  UIColor(red: 217.0/255.0, green: 100.0/255.0, blue: 0.0/255.0, alpha: 1.0).cgColor
+        let colorBottom = UIColor(red: 10.0/255.0, green: 94.0/255.0, blue: 255.0/255.0, alpha: 1.0).cgColor
+          
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [colorTop, colorBottom]
+        gradientLayer.locations = [0.0, 1.0]
+        gradientLayer.frame = self.view.bounds
+                
+        self.view.layer.insertSublayer(gradientLayer, at:0)
+    }
+    
+    
+    
+    func setMorningColors() {
+        let colorTop =  UIColor(red: 245.0/255.0, green: 220.0/255.0, blue: 88.0/255.0, alpha: 1.0).cgColor
+        let colorBottom = UIColor(red: 10.0/255.0, green: 94.0/255.0, blue: 255.0/255.0, alpha: 1.0).cgColor
+          
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [colorTop, colorBottom]
+        gradientLayer.locations = [0.0, 1.0]
+        gradientLayer.frame = self.view.bounds
+                
+        self.view.layer.insertSublayer(gradientLayer, at:0)
+    }
+    
+    
+    func setMiddayColors() {
+        let colorTop =  UIColor(red: 255.0/255.0, green: 230.0/255.0, blue: 153.0/255.0, alpha: 1.0).cgColor
+        let colorBottom = UIColor(red: 10.0/255.0, green: 94.0/255.0, blue: 255.0/255.0, alpha: 1.0).cgColor
+          
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [colorTop, colorBottom]
+        gradientLayer.locations = [0.0, 1.0]
+        gradientLayer.frame = self.view.bounds
+                
+        self.view.layer.insertSublayer(gradientLayer, at:0)
+    }
+    
+    
+    func setSunsetColors() {
+        let colorTop =  UIColor(red: 217.0/255.0, green: 100.0/255.0, blue: 117.0/255.0, alpha: 1.0).cgColor
+        let colorBottom = UIColor(red: 10.0/255.0, green: 94.0/255.0, blue: 255.0/255.0, alpha: 1.0).cgColor
+          
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [colorTop, colorBottom]
+        gradientLayer.locations = [0.0, 1.0]
+        gradientLayer.frame = self.view.bounds
+                
+        self.view.layer.insertSublayer(gradientLayer, at:0)
+    }
+    
+    func setNightColors() {
+        let colorTop =  UIColor(red: 160.0/255.0, green: 160.0/255.0, blue: 160.0/255.0, alpha: 1.0).cgColor
+        let colorBottom = UIColor(red: 90.0/255.0, green: 90.0/255.0, blue: 90.0/255.0, alpha: 1.0).cgColor
+          
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [colorTop, colorBottom]
+        gradientLayer.locations = [0.0, 1.0]
+        gradientLayer.frame = self.view.bounds
+                
+        self.view.layer.insertSublayer(gradientLayer, at:0)
+    }
+    
+    
+    
+    
+    
+    @IBAction func locationButton(_ sender: Any) {
+        //using the cclocation button causes a bug crash :(
+        
+    }
+    
     
     @IBAction func unwindToFirst(_ unwindSegue: UIStoryboardSegue) {
         guard unwindSegue.source is PlantSettingsViewController else {return}
@@ -273,7 +341,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goTo3Hour" {
-            guard segue.destination is ThreeHourViewController else {return}
+            //guard let threeHourVC =
             
             // threeHourVC.weatherInfo = weatherInfo
             //threeHourVC.locationData = passedData

@@ -55,7 +55,7 @@ class WeatherInfo {
     }
     
     var minMaxTemp: String {
-        return "Low: \(minTemp) \nHigh: \(maxTemp)"
+        return "Low: \(minTemp.description.dropLast(3))° \nHigh: \(maxTemp.description.dropLast(3))°"
         
     }
     

@@ -24,6 +24,8 @@
 		2653E1DB293AB2B000CD1925 /* 3HourForecastJsonEX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2653E1DA293AB2B000CD1925 /* 3HourForecastJsonEX.swift */; };
 		2653E1DD293AB47800CD1925 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2653E1DC293AB47800CD1925 /* Weather.swift */; };
 		2653E1DF293ACC7800CD1925 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2653E1DE293ACC7800CD1925 /* CollectionViewCell.swift */; };
+		26BFFA1E294BC1C4003A79A8 /* Astrology.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BFFA1D294BC1C4003A79A8 /* Astrology.swift */; };
+		26BFFA20294BCC2C003A79A8 /* astrologyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BFFA1F294BCC2C003A79A8 /* astrologyCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		2653E1DA293AB2B000CD1925 /* 3HourForecastJsonEX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 3HourForecastJsonEX.swift; sourceTree = "<group>"; };
 		2653E1DC293AB47800CD1925 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		2653E1DE293ACC7800CD1925 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		26BFFA1D294BC1C4003A79A8 /* Astrology.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Astrology.swift; sourceTree = "<group>"; };
+		26BFFA1F294BCC2C003A79A8 /* astrologyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = astrologyCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +70,8 @@
 				2653E1DA293AB2B000CD1925 /* 3HourForecastJsonEX.swift */,
 				263EFA1A29455A2200C5FDD4 /* threeHourCollectionViewCell.swift */,
 				263EFA18294556E100C5FDD4 /* ThreeHourViewController.swift */,
+				26BFFA1D294BC1C4003A79A8 /* Astrology.swift */,
+				26BFFA1F294BCC2C003A79A8 /* astrologyCollectionViewCell.swift */,
 			);
 			name = "3 Hour";
 			sourceTree = "<group>";
@@ -200,6 +206,7 @@
 				2653E1CB293AAD1500CD1925 /* ViewController.swift in Sources */,
 				263C6D9C293FF35000F2634A /* PlantSettingsViewController.swift in Sources */,
 				2653E1C7293AAD1500CD1925 /* AppDelegate.swift in Sources */,
+				26BFFA20294BCC2C003A79A8 /* astrologyCollectionViewCell.swift in Sources */,
 				263EFA152943DB1400C5FDD4 /* userDefaults.swift in Sources */,
 				263C6D9A293FE9B300F2634A /* Location.swift in Sources */,
 				2653E1DF293ACC7800CD1925 /* CollectionViewCell.swift in Sources */,
@@ -207,6 +214,7 @@
 				2653E1DB293AB2B000CD1925 /* 3HourForecastJsonEX.swift in Sources */,
 				2653E1DD293AB47800CD1925 /* Weather.swift in Sources */,
 				263EFA1B29455A2200C5FDD4 /* threeHourCollectionViewCell.swift in Sources */,
+				26BFFA1E294BC1C4003A79A8 /* Astrology.swift in Sources */,
 				263C6D98293FE71900F2634A /* GeocodingEX.swift in Sources */,
 				263EFA17294555DD00C5FDD4 /* CurrentWeatherJsonEX.swift in Sources */,
 			);

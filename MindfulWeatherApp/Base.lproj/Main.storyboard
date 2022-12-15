@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -147,7 +148,7 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="springOutside" translatesAutoresizingMaskIntoConstraints="NO" id="buw-Ap-612">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="outside" translatesAutoresizingMaskIntoConstraints="NO" id="buw-Ap-612">
                                 <rect key="frame" x="31" y="227" width="331" height="353"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -165,11 +166,23 @@
                     </view>
                     <navigationItem key="navigationItem" id="uB8-ZI-BB5">
                         <nil key="title"/>
-                        <barButtonItem key="leftBarButtonItem" title="Plant Settings" image="plantInHand" id="pVS-MW-cIB">
-                            <color key="tintColor" red="0.028300382650000001" green="0.0" blue="0.11973852040000001" alpha="1" colorSpace="calibratedRGB"/>
-                        </barButtonItem>
+                        <leftBarButtonItems>
+                            <barButtonItem title="Plant Settings" image="plantInHand" id="pVS-MW-cIB">
+                                <color key="tintColor" red="0.028300382650000001" green="0.0" blue="0.11973852040000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <segue destination="eHn-Bc-rGC" kind="show" id="fzp-xv-llX"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Item" id="cti-uv-aPB">
+                                <imageReference key="image" image="location" catalog="system" symbolScale="large" renderingMode="template"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="locationButton:" destination="BYZ-38-t0r" id="NoV-j2-WVX"/>
+                                </connections>
+                            </barButtonItem>
+                        </leftBarButtonItems>
                         <textField key="titleView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" placeholder="Enter City, State or Zip" minimumFontSize="11" id="WsA-m8-Fmd">
-                            <rect key="frame" x="83.000000000000014" y="5" width="171.33333333333337" height="34"/>
+                            <rect key="frame" x="138.33333333333334" y="5" width="116" height="34"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <attributedString key="attributedText"/>
                             <textInputTraits key="textInputTraits"/>
@@ -323,7 +336,7 @@
                     <navigationItem key="navigationItem" id="N7g-CF-pfo">
                         <barButtonItem key="rightBarButtonItem" title="Saved Plants" id="FWO-mj-4sv">
                             <connections>
-                                <segue destination="7eN-Jg-UTF" kind="show" id="asx-OB-8Ws"/>
+                                <segue destination="7eN-Jg-UTF" kind="show" id="seq-M4-DZx"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -348,35 +361,148 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="RnZ-5C-B4P">
-                                <rect key="frame" x="0.0" y="103" width="393" height="656"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vdP-mk-FiK">
+                                <rect key="frame" x="39" y="103" width="314" height="95"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Three Hour Forecast over Five Days">
+                                        <attributes>
+                                            <font key="NSFont" size="26" name="AmericanTypewriter"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cES-lY-jIM">
+                                <rect key="frame" x="39" y="545" width="314" height="54"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Sun and Moon">
+                                        <attributes>
+                                            <font key="NSFont" size="26" name="AmericanTypewriter"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="njM-Y1-MRh">
+                                <rect key="frame" x="16" y="596" width="361" height="243"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="FdO-XT-wzf">
-                                    <size key="itemSize" width="98" height="165"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Cge-Sb-HqA">
+                                    <size key="itemSize" width="140" height="209"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell_ID_4" id="A8Q-RQ-N9e" customClass="astrologyCollectionViewCell" customModule="MindfulWeatherApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="17" width="140" height="209"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="nZN-Pn-IgU">
+                                            <rect key="frame" x="0.0" y="0.0" width="140" height="209"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="X80-J2-5cW">
+                                                    <rect key="frame" x="0.0" y="0.0" width="140" height="26"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <attributedString key="attributedText">
+                                                        <fragment content="Sunrise 6:00 AM">
+                                                            <attributes>
+                                                                <font key="NSFont" size="16" name="AmericanTypewriter"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="VpA-rw-8lW">
+                                                    <rect key="frame" x="0.0" y="25" width="140" height="26"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <attributedString key="attributedText">
+                                                        <fragment content="Sunset 8:00 PM">
+                                                            <attributes>
+                                                                <font key="NSFont" size="16" name="AmericanTypewriter"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z4R-Gq-bbN">
+                                                    <rect key="frame" x="0.0" y="166" width="140" height="26"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <attributedString key="attributedText">
+                                                        <fragment content="Moonset 8:00 AM">
+                                                            <attributes>
+                                                                <font key="NSFont" size="16" name="AmericanTypewriter"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KA7-MT-PDt">
+                                                    <rect key="frame" x="24" y="50" width="93" height="92"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="BX2-id-5AD">
+                                                    <rect key="frame" x="0.0" y="143" width="140" height="26"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <attributedString key="attributedText">
+                                                        <fragment content="Moonrise 6:00 PM">
+                                                            <attributes>
+                                                                <font key="NSFont" size="15" name="AmericanTypewriter"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="140" height="209"/>
+                                        <connections>
+                                            <outlet property="moonImage" destination="KA7-MT-PDt" id="xeR-4y-gWr"/>
+                                            <outlet property="moonriseLabel" destination="BX2-id-5AD" id="Fog-GR-pUe"/>
+                                            <outlet property="moonset" destination="Z4R-Gq-bbN" id="e8f-io-c5H"/>
+                                            <outlet property="sunriseLabel" destination="X80-J2-5cW" id="qST-Np-wKq"/>
+                                            <outlet property="sunsetLabel" destination="VpA-rw-8lW" id="fil-bn-3G7"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="qo2-J0-vRs" id="nm5-u0-8ZF"/>
+                                    <outlet property="delegate" destination="qo2-J0-vRs" id="yjO-uI-BWq"/>
+                                </connections>
+                            </collectionView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="RnZ-5C-B4P">
+                                <rect key="frame" x="20" y="220" width="353" height="259"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="FdO-XT-wzf">
+                                    <size key="itemSize" width="161" height="207"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell_ID_2" id="KyI-Wa-oYr" customClass="threeHourCollectionViewCell" customModule="MindfulWeatherApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="100" height="165"/>
+                                        <rect key="frame" x="0.0" y="26" width="161" height="207"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="XxJ-Je-FUb">
-                                            <rect key="frame" x="0.0" y="0.0" width="100" height="165"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="161" height="207"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="frame100x165" translatesAutoresizingMaskIntoConstraints="NO" id="UL9-EQ-NLd">
-                                                    <rect key="frame" x="0.0" y="0.0" width="98" height="165"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jKl-B1-bRb">
-                                                    <rect key="frame" x="-8" y="106" width="112" height="59"/>
+                                                    <rect key="frame" x="8" y="148" width="153" height="59"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <attributedString key="attributedText">
-                                                        <fragment content="LOW: 20 HIGH: 20">
+                                                        <fragment content="20 20">
                                                             <attributes>
-                                                                <font key="NSFont" size="17" name="AmericanTypewriter"/>
+                                                                <font key="NSFont" size="21" name="AmericanTypewriter"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
@@ -384,12 +510,12 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MP2-HT-scM">
-                                                    <rect key="frame" x="-4" y="0.0" width="104" height="47"/>
+                                                    <rect key="frame" x="-11" y="0.0" width="181" height="70"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="12-10  12AM">
                                                             <attributes>
-                                                                <font key="NSFont" size="17" name="AmericanTypewriter"/>
+                                                                <font key="NSFont" size="23" name="AmericanTypewriter"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
@@ -397,12 +523,12 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QOM-uP-rp6">
-                                                    <rect key="frame" x="0.0" y="55" width="102" height="55"/>
+                                                    <rect key="frame" x="4" y="23" width="153" height="161"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                             </subviews>
                                         </collectionViewCellContentView>
-                                        <size key="customSize" width="100" height="165"/>
+                                        <size key="customSize" width="161" height="207"/>
                                         <connections>
                                             <outlet property="dateLabel" destination="MP2-HT-scM" id="h1P-bL-qax"/>
                                             <outlet property="lowHighLabel" destination="jKl-B1-bRb" id="A6x-24-wVh"/>
@@ -421,7 +547,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="y8e-lN-GSq"/>
                     <connections>
+                        <outlet property="astrologyCollectionView" destination="njM-Y1-MRh" id="r8C-eL-Qnk"/>
                         <outlet property="threeHourCollectionView" destination="RnZ-5C-B4P" id="i8t-sz-sf6"/>
+                        <outlet property="threeHourView" destination="W7h-wl-tAk" id="FwE-1x-3R8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6HO-hS-ijL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -451,7 +579,7 @@
             <objects>
                 <viewController id="7eN-Jg-UTF" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GRb-5S-M0r">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="GmG-Mh-h7W">
@@ -488,10 +616,10 @@
     </scenes>
     <resources>
         <image name="OrangeTree0" width="500" height="500"/>
-        <image name="frame100x165" width="100" height="165"/>
         <image name="inside" width="250" height="250"/>
+        <image name="location" catalog="system" width="128" height="121"/>
+        <image name="outside" width="250" height="250"/>
         <image name="plantInHand" width="50" height="50"/>
-        <image name="springOutside" width="250" height="250"/>
         <image name="weatherSettings" width="50" height="50"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
