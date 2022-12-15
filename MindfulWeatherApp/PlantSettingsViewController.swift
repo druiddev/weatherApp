@@ -26,6 +26,29 @@ class PlantSettingsViewController: UIViewController {
         let tendStatus = UserDefaults.standard.bool(forKey: "tend")
         let deathStatus = UserDefaults.standard.bool(forKey: "plantDeath")
         let locationStatus = UserDefaults.standard.bool(forKey: "plantLocation")
+        
+        
+        
+//        if let growthTimePlantSetting = UserDefaults.standard.object(forKey: "growthLength") {
+//            plantGrowthLength = growthTimePlantSetting as! Int
+//        }
+//        
+//        if let tendPlantSetting = UserDefaults.standard.object(forKey: "tend") {
+//            tend = tendPlantSetting as! Bool
+//        }
+//        
+//        if let witherPlantSetting = UserDefaults.standard.object(forKey: "wither") {
+//            wither = witherPlantSetting as! Bool
+//        }
+//        
+//        if let locationPlantSetting = UserDefaults.standard.object(forKey: "plantLocation") {
+//            housePlant = locationPlantSetting as! Bool
+//        }
+//        
+//        
+        
+        
+        
     }
     
     

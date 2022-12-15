@@ -24,7 +24,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     
     var dailyWeather = [DailyWeather]()
     var locationInfo = [Location]()
-    var filteredToDays = [[DailyWeather](), [DailyWeather](), [DailyWeather](), [DailyWeather](), [DailyWeather]()]
     let locationManager = CLLocationManager()
     var latitude = 0.0
     var longitude = 0.0
@@ -47,6 +46,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
         
         print(hour)
         
+        //user defaults
         if let firstOpen = UserDefaults.standard.object(forKey: "firstDate") as? Date {
             print("The app was first opened on \(firstOpen)")
         } else {
@@ -54,38 +54,23 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
             UserDefaults.standard.set(Date(), forKey: "firstDate")
         }
         
-        
         if let growthTimePlantSetting = UserDefaults.standard.object(forKey: "growthLength") {
             plantGrowthLength = growthTimePlantSetting as! Int
         }
         
         if let tendPlantSetting = UserDefaults.standard.object(forKey: "tend") {
-            tend = tendPlantSetting
+            tend = tendPlantSetting as! Bool
         }
         
         if let witherPlantSetting = UserDefaults.standard.object(forKey: "wither") {
-            wither = witherPlantSetting
+            wither = witherPlantSetting as! Bool
         }
         
         if let locationPlantSetting = UserDefaults.standard.object(forKey: "plantLocation") {
-            housePlant = locationPlantSetting
+            housePlant = locationPlantSetting as! Bool
         }
         
-        
-        
-        
-        
-        
-        
-        
-        //compares dates from when the last time you opened the app so you can see how much your plant grew in the time you were gone.
-        //calculates how many days have elasped while the app was closed
-        //let savedDate = UserDefaults.standard.value(forKey: "firstDate")
-        // let currentDate = Date()
-        // let diffInDays = Calendar.current.dateComponents([.day], from: savedDate as! Date, to: currentDate).day
- 
-        
-        
+     
         //location manager
         setupLocationManager()
         
@@ -97,20 +82,21 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        daysCollectionView.reloadData()
         reloadDataInputs()
     }
     
     func reloadDataInputs(){
         
-        for loc in locationInfo{
-            locationLabel.text = "\(loc.city), \(loc.state)"
-        }
+//        for loc in locationInfo{
+//            locationLabel.text = "\(loc.city), \(loc.state)"
+//        }
         
         for info in dailyWeather {
-            var t = String(info.temp.description).dropLast(3)
+            let t = String(info.currentTemp.description).dropLast(2)
             temperatureLabel.text = "\(t)°"
-            weatherDescriptionLabel.text = info.weatherDescLabelText
+            weatherDescriptionLabel.text = info.dailyDesc
+            locationLabel.text = "\(info.city), \(info.state)"
         }
         
         
@@ -135,9 +121,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
                 latitude = location.coordinate.latitude
                 lon = (longitude*100).rounded()/100 //rounds it to two decimal places
                 lat = (latitude*100).rounded()/100
-                
+                print("\(lat),\(lon)")
                 //json weather data
-                weatherInformation(atURL: "https://api.openweathermap.org/data/2.5/forecast?lat=\(lat)&lon=\(lon)&appid=\(API)&units=imperial")
+                weatherInformation(atURL: "https://api.weatherapi.com/v1/forecast.json?key=5e27e4e054a04ba8b83220852221412&q=\(lat),\(lon)&days=10&aqi=no&alerts=no")
                 
                 //location name based on lat and lon
                 reverseGeocoding(atURL: "https://api.openweathermap.org/geo/1.0/reverse?lat=\(lat)&lon=\(lon)&limit=5&appid=\(API)")
@@ -258,24 +244,21 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
   extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
       
       func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-          return filteredToDays[section].count
+          return dailyWeather.count
       }
       
       func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
           guard let cell = daysCollectionView.dequeueReusableCell(withReuseIdentifier: "cell_ID_1", for: indexPath) as? CollectionViewCell else {return daysCollectionView.dequeueReusableCell(withReuseIdentifier: "cell_ID_1", for: indexPath)}
-
-          let currentCell = filteredToDays[indexPath.section][indexPath.row]
           
           if dailyWeather.isEmpty != true{
-              
-             // let stringDay = dailyWeather[indexPath.row].dateString.suffix(2)
-        
-            
-            cell.dayLabel.text = currentCell.dateString
-            cell.imageLabel.image = currentCell.imageProperty
-            cell.avgTemp.text = currentCell.tempString
-            cell.humidityLabel.text = currentCell.humidityString
-        }
+              print("hi")
+              cell.dayLabel.text = dailyWeather[indexPath.row].dailyDesc
+              cell.imageLabel.image = dailyWeather[indexPath.row].imageProperty
+              cell.avgTemp.text = dailyWeather[indexPath.row].dailyTemp.description
+              cell.humidityLabel.text = dailyWeather[indexPath.row].dailyHumidity.description
+          } else {
+              print("i am empty")
+          }
         return cell
     }
     
