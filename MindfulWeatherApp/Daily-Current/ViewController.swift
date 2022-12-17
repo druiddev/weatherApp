@@ -37,18 +37,21 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     let day = Calendar.current.component(.day, from: Date())
     var currentDate = Date()
     let savedDate = UserDefaults.standard.value(forKey: "firstDate")
-    var plantGrowthLength = 10
-    var tend = false
-    var wither = false
-    var housePlant = true
+    var plantGrowthLength = 0 //the five choices
+    var tend = 0 //true is 0
+    var wither = 0 // it will wither by default, true is 0
+    var housePlant = 0 //true is 0
     var searchInput = "16648"
-    
+    var settingsRef = PlantSettings()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
        
+        //user defaults function for plant settings
+        userDefaultsSavedInfo()
         
+
         //user defaults
         if let firstOpen = UserDefaults.standard.object(forKey: "firstDate") as? Date {
             print("The app was first opened on \(firstOpen)")
@@ -56,8 +59,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
             // This is the first launch
             UserDefaults.standard.set(Date(), forKey: "firstDate")
         }
-        
-        userDefaultsSavedInfo()
         
      
         //location manager
@@ -77,21 +78,27 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     }
     
     func userDefaultsSavedInfo(){
-        if let growthTimePlantSetting = UserDefaults.standard.object(forKey: "growthLength") {
-            plantGrowthLength = growthTimePlantSetting as! Int
-        }
         
-        if let tendPlantSetting = UserDefaults.standard.object(forKey: "tend") {
-            tend = tendPlantSetting as! Bool
-        }
         
-        if let witherPlantSetting = UserDefaults.standard.object(forKey: "wither") {
-            wither = witherPlantSetting as! Bool
-        }
+        if let value = UserDefaults.standard.value(forKey: "growthLength"){
+                  let selectedIndex = value as! Int
+                  plantGrowthLength = selectedIndex
+              }
         
-        if let locationPlantSetting = UserDefaults.standard.object(forKey: "plantLocation") {
-            housePlant = locationPlantSetting as! Bool
-        }
+        if let value = UserDefaults.standard.value(forKey: "tend"){
+                  let selectedIndex = value as! Int
+                  tend = selectedIndex
+              }
+        
+        if let value = UserDefaults.standard.value(forKey: "wither"){
+                  let selectedIndex = value as! Int
+                  wither = selectedIndex
+              }
+        
+        if let value = UserDefaults.standard.value(forKey: "plantLocation"){
+                  let selectedIndex = value as! Int
+                  housePlant = selectedIndex
+              }
     }
     
     
@@ -225,7 +232,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
             
             
             //if settings is set to ten days, cant die, inside and no tending
-            if plantGrowthLength == 10 && tend == false && wither == false && housePlant == true{
+            if plantGrowthLength == 0 && tend == 1 && wither == 1 && housePlant == 0{
                 switch diffInDays {
                 case 1:
                     //one day has passed
@@ -336,9 +343,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     
     @IBAction func unwindToFirst(_ unwindSegue: UIStoryboardSegue) {
         guard let plantVC = unwindSegue.source as? PlantSettingsViewController else {return}
-        guard let threeHourVC = unwindSegue.source as? ThreeHourViewController else {return}
+       // guard let threeHourVC = unwindSegue.source as? ThreeHourViewController else {return}
         
-        
+        plantVC.growthSwitch.selectedSegmentIndex = plantGrowthLength
+        plantVC.tendPlantSwitch.selectedSegmentIndex = tend
+        plantVC.plantDeathSwitch.selectedSegmentIndex = wither
+        plantVC.plantLocationSwitch.selectedSegmentIndex = housePlant
         
         
     }
@@ -348,12 +358,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
             guard let plantVC = segue.destination as? PlantSettingsViewController else {return}
             //guard let threeHourVC = segue.destination as? ThreeHourViewController else {return}
                         
-            
-           // plantVC.plantDeathSwitch.
-            
-            
-                        //adding the values entered to the temp array on second controller
-                        //secondVC.tempArray = arrayOfStrings
+          userDefaultsSavedInfo()
+          plantVC.settingsRef = settingsRef
 
             
         }
