@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		26186075294DF658007FD8C1 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26186074294DF658007FD8C1 /* Settings.swift */; };
+		26186078294E4D87007FD8C1 /* SavedPlantsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26186077294E4D87007FD8C1 /* SavedPlantsViewController.swift */; };
+		2618607B294E4DBD007FD8C1 /* SavedPlantCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2618607A294E4DBD007FD8C1 /* SavedPlantCollectionViewCell.swift */; };
+		2618607D294E4DDD007FD8C1 /* SavedPlants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2618607C294E4DDD007FD8C1 /* SavedPlants.swift */; };
+		2618607F294F2C2A007FD8C1 /* SinglePlantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2618607E294F2C2A007FD8C1 /* SinglePlantViewController.swift */; };
 		263C6D98293FE71900F2634A /* GeocodingEX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263C6D97293FE71900F2634A /* GeocodingEX.swift */; };
 		263C6D9A293FE9B300F2634A /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263C6D99293FE9B300F2634A /* Location.swift */; };
 		263C6D9C293FF35000F2634A /* PlantSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263C6D9B293FF35000F2634A /* PlantSettingsViewController.swift */; };
@@ -30,6 +34,10 @@
 
 /* Begin PBXFileReference section */
 		26186074294DF658007FD8C1 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		26186077294E4D87007FD8C1 /* SavedPlantsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedPlantsViewController.swift; sourceTree = "<group>"; };
+		2618607A294E4DBD007FD8C1 /* SavedPlantCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedPlantCollectionViewCell.swift; sourceTree = "<group>"; };
+		2618607C294E4DDD007FD8C1 /* SavedPlants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedPlants.swift; sourceTree = "<group>"; };
+		2618607E294F2C2A007FD8C1 /* SinglePlantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglePlantViewController.swift; sourceTree = "<group>"; };
 		263C6D97293FE71900F2634A /* GeocodingEX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocodingEX.swift; sourceTree = "<group>"; };
 		263C6D99293FE9B300F2634A /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		263C6D9B293FF35000F2634A /* PlantSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantSettingsViewController.swift; sourceTree = "<group>"; };
@@ -70,6 +78,24 @@
 				26186074294DF658007FD8C1 /* Settings.swift */,
 			);
 			name = "Plant Settings";
+			sourceTree = "<group>";
+		};
+		26186079294E4D8C007FD8C1 /* Saved Plants */ = {
+			isa = PBXGroup;
+			children = (
+				26186077294E4D87007FD8C1 /* SavedPlantsViewController.swift */,
+				2618607A294E4DBD007FD8C1 /* SavedPlantCollectionViewCell.swift */,
+				2618607C294E4DDD007FD8C1 /* SavedPlants.swift */,
+			);
+			path = "Saved Plants";
+			sourceTree = "<group>";
+		};
+		26186080294F2DBB007FD8C1 /* single Saved Plant */ = {
+			isa = PBXGroup;
+			children = (
+				2618607E294F2C2A007FD8C1 /* SinglePlantViewController.swift */,
+			);
+			path = "single Saved Plant";
 			sourceTree = "<group>";
 		};
 		263EFA1F2948A9D800C5FDD4 /* 3 Hour */ = {
@@ -134,6 +160,8 @@
 				263EFA202948A9FB00C5FDD4 /* Daily-Current */,
 				263EFA1F2948A9D800C5FDD4 /* 3 Hour */,
 				26186076294E085D007FD8C1 /* Plant Settings */,
+				26186079294E4D8C007FD8C1 /* Saved Plants */,
+				26186080294F2DBB007FD8C1 /* single Saved Plant */,
 			);
 			path = MindfulWeatherApp;
 			sourceTree = "<group>";
@@ -217,6 +245,9 @@
 				2653E1C7293AAD1500CD1925 /* AppDelegate.swift in Sources */,
 				26BFFA20294BCC2C003A79A8 /* astrologyCollectionViewCell.swift in Sources */,
 				263C6D9A293FE9B300F2634A /* Location.swift in Sources */,
+				2618607B294E4DBD007FD8C1 /* SavedPlantCollectionViewCell.swift in Sources */,
+				2618607D294E4DDD007FD8C1 /* SavedPlants.swift in Sources */,
+				2618607F294F2C2A007FD8C1 /* SinglePlantViewController.swift in Sources */,
 				2653E1DF293ACC7800CD1925 /* CollectionViewCell.swift in Sources */,
 				2653E1C9293AAD1500CD1925 /* SceneDelegate.swift in Sources */,
 				2653E1DB293AB2B000CD1925 /* 3HourForecastJsonEX.swift in Sources */,
@@ -224,6 +255,7 @@
 				263EFA1B29455A2200C5FDD4 /* threeHourCollectionViewCell.swift in Sources */,
 				26BFFA1E294BC1C4003A79A8 /* Astrology.swift in Sources */,
 				263C6D98293FE71900F2634A /* GeocodingEX.swift in Sources */,
+				26186078294E4D87007FD8C1 /* SavedPlantsViewController.swift in Sources */,
 				263EFA17294555DD00C5FDD4 /* CurrentWeatherJsonEX.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

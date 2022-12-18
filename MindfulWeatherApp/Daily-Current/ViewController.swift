@@ -25,6 +25,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     @IBOutlet var searchButton: UIBarButtonItem!
     @IBOutlet var searchBar: UITextField!
     
+    //location vars
     var dailyWeather = [DailyWeather]()
     var locationInfo = [Location]()
     let locationManager = CLLocationManager()
@@ -32,17 +33,29 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     var longitude = 0.0
     var lat: CLLocationDegrees = 0.0
     var lon: CLLocationDegrees = 0.0
+    
+    //api vars
+    var searchInput = "16648"
     var API = "405db7bf13ea449a2506f66752e029b5"
+    
+    //date vars
     let hour = Calendar.current.component(.hour, from: Date())
     let day = Calendar.current.component(.day, from: Date())
     var currentDate = Date()
     let savedDate = UserDefaults.standard.value(forKey: "firstDate")
+    
+    //settings vars
     var plantGrowthLength = 0 //the five choices
     var tend = 0 //true is 0
     var wither = 0 // it will wither by default, true is 0
     var housePlant = 0 //true is 0
-    var searchInput = "16648"
     var settingsRef = PlantSettings()
+    
+    //plant
+    var plantImage = UIImage(named: "OrangeTree0")
+    var plantLocationImage = UIImage(named: "inside")
+    var savedPlants = [SavedPlants]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,6 +81,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
         daysCollectionView.reloadData()
         backgroundColorBasedOnTime()
         plantgrowth()
+        
+        
+        //settings the image values to the current
+        plantImage = plantImageLabel.image
+        
+        if insideImageLabel.isHidden == true{
+            plantLocationImage = outsideImageLabel.image
+        } else if insideImageLabel.isHidden == false{
+            plantLocationImage = insideImageLabel.image
+        }
+        
         
     }
     
@@ -351,16 +375,24 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
         plantVC.plantLocationSwitch.selectedSegmentIndex = housePlant
         
         
+        guard let savedVC = unwindSegue.source as? SavedPlantsViewController else {return}
+        
+        savedVC.plantImage = plantImage
+        savedVC.plantLocationImage = plantLocationImage
+        
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "gotoPlant" {
             guard let plantVC = segue.destination as? PlantSettingsViewController else {return}
             //guard let threeHourVC = segue.destination as? ThreeHourViewController else {return}
-                        
-          userDefaultsSavedInfo()
-          plantVC.settingsRef = settingsRef
-
+            
+            userDefaultsSavedInfo()
+            plantVC.settingsRef = settingsRef
+            plantVC.plantImage = plantImage
+            plantVC.plantLocationImage = plantLocationImage
+            
             
         }
         
