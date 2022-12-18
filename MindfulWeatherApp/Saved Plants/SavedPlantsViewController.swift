@@ -23,12 +23,15 @@ class SavedPlantsViewController: UIViewController {
     }
     
 
-    @IBAction func unwindToFirst(_ unwindSegue: UIStoryboardSegue) {
-        guard let savedVC = unwindSegue.source as? SavedPlantsViewController else {return}
+    //to send info from one controller to the other
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        
+        if let singlePlantVC = segue.destination as? SinglePlantViewController {
+            for info in savedPlants{
+                singlePlantVC.savedPlant = info
+            }
+        }
     }
-
 }
 
 extension SavedPlantsViewController: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -53,8 +56,11 @@ extension SavedPlantsViewController: UICollectionViewDataSource, UICollectionVie
         
     }
     
-
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "gotoSinglePlant", sender: self)
+    }
+ 
     
     
 }

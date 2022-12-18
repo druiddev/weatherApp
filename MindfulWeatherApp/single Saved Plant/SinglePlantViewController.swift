@@ -13,7 +13,7 @@ class SinglePlantViewController: UIViewController {
     @IBOutlet var plantLocationImage: UIImageView!
     @IBOutlet var plantImage: UIImageView!
     @IBOutlet var dateSavedLabel: UILabel!
-    
+    var savedPlant: SavedPlants?
     
     
     override func viewDidLoad() {

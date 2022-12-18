@@ -160,6 +160,15 @@
                                 <rect key="frame" x="52" y="227" width="301" height="353"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R3O-Nx-m33">
+                                <rect key="frame" x="31" y="508" width="77" height="72"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="wateringCan"/>
+                                <connections>
+                                    <action selector="wateringCanButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tgT-ne-RlQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -638,7 +647,7 @@
                                             <outlet property="plantImage" destination="SrP-ah-r3l" id="bjh-lz-oOK"/>
                                             <outlet property="plantLocationImage" destination="hAm-By-BjV" id="4QB-b7-xkL"/>
                                             <outlet property="savedDateLabel" destination="X4j-vG-qnB" id="dI2-kf-ljb"/>
-                                            <segue destination="AHt-il-279" kind="show" id="2E1-OM-ii2"/>
+                                            <segue destination="AHt-il-279" kind="show" identifier="gotoSinglePlant" id="2E1-OM-ii2"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -741,6 +750,7 @@
         <image name="location" catalog="system" width="128" height="121"/>
         <image name="outside" width="250" height="250"/>
         <image name="plantInHand" width="50" height="50"/>
+        <image name="wateringCan" width="48" height="48"/>
         <image name="weatherSettings" width="50" height="50"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

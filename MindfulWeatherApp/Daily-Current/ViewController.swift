@@ -57,6 +57,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     var savedPlants = [SavedPlants]()
     
     
+    //tending
+    var didWater = false
+    var withering = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -125,7 +129,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
               }
     }
     
+    func waterPlant(){
+        
+        didWater = true
+        
+    }
     
+    @IBAction func wateringCanButton(_ sender: Any) {
+        
+        waterPlant()
+        
+    }
     
     
     func reloadDataInputs(){
@@ -255,8 +269,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
             
             
             
-            //if settings is set to ten days, cant die, inside and no tending
-            if plantGrowthLength == 0 && tend == 1 && wither == 1 && housePlant == 0{
+            //if settings is set to ten days, cant die, inside and no tending OR ten days, tending, cant die, inside
+            if plantGrowthLength == 0 && tend == 1 && wither == 1 && housePlant == 0 || plantGrowthLength == 0 && tend == 0 && wither == 1 && housePlant == 0{
                 switch diffInDays {
                 case 1:
                     //one day has passed
@@ -282,6 +296,547 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
                 }
                 
             }
+            
+            //if settings is set to 20 days, cant die, inside and no tending OR 20 days, tending, cant die, inside
+            if plantGrowthLength == 1 && tend == 1 && wither == 1 && housePlant == 0 || plantGrowthLength == 1 && tend == 0 && wither == 1 && housePlant == 0{
+                switch diffInDays {
+                case 4:
+                    
+                    plantImageLabel.image = UIImage(named: "OrangeTree1")
+                case 6:
+                    plantImageLabel.image = UIImage(named: "OrangeTree2")
+                case 8:
+                    plantImageLabel.image = UIImage(named: "OrangeTree3")
+                case 10:
+                    plantImageLabel.image = UIImage(named: "OrangeTree4")
+                case 12:
+                    plantImageLabel.image = UIImage(named: "OrangeTree5")
+                case 14:
+                    plantImageLabel.image = UIImage(named: "OrangeTree6")
+                case 16:
+                    plantImageLabel.image = UIImage(named: "OrangeTree7")
+                case 18:
+                    plantImageLabel.image = UIImage(named: "OrangeTree8")
+                case 20:
+                    plantImageLabel.image = UIImage(named: "OrangeTree9")
+                default:
+                    plantImageLabel.image = UIImage(named: "OrangeTree0")
+                }
+                
+            }
+            
+            
+            //if settings is set to 40 days, cant die, inside and no tending OR 40 days, tending, cant die, inside
+            if plantGrowthLength == 0 && tend == 1 && wither == 1 && housePlant == 0 || plantGrowthLength == 0 && tend == 0 && wither == 1 && housePlant == 0{
+                switch diffInDays {
+                case 8:
+                    //one day has passed
+                    plantImageLabel.image = UIImage(named: "OrangeTree1")
+                case 12:
+                    plantImageLabel.image = UIImage(named: "OrangeTree2")
+                case 16:
+                    plantImageLabel.image = UIImage(named: "OrangeTree3")
+                case 20:
+                    plantImageLabel.image = UIImage(named: "OrangeTree4")
+                case 24:
+                    plantImageLabel.image = UIImage(named: "OrangeTree5")
+                case 28:
+                    plantImageLabel.image = UIImage(named: "OrangeTree6")
+                case 32:
+                    plantImageLabel.image = UIImage(named: "OrangeTree7")
+                case 36:
+                    plantImageLabel.image = UIImage(named: "OrangeTree8")
+                case 40:
+                    plantImageLabel.image = UIImage(named: "OrangeTree9")
+                default:
+                    plantImageLabel.image = UIImage(named: "OrangeTree0")
+                }
+                
+            }
+            
+            
+            //if settings is set to 80 days, cant die, inside and no tending OR 80 days, tending, cant die, inside
+            if plantGrowthLength == 0 && tend == 1 && wither == 1 && housePlant == 0 || plantGrowthLength == 0 && tend == 0 && wither == 1 && housePlant == 0{
+                switch diffInDays {
+                case 16:
+                    //one day has passed
+                    plantImageLabel.image = UIImage(named: "OrangeTree1")
+                case 24:
+                    plantImageLabel.image = UIImage(named: "OrangeTree2")
+                case 32:
+                    plantImageLabel.image = UIImage(named: "OrangeTree3")
+                case 40:
+                    plantImageLabel.image = UIImage(named: "OrangeTree4")
+                case 48:
+                    plantImageLabel.image = UIImage(named: "OrangeTree5")
+                case 56:
+                    plantImageLabel.image = UIImage(named: "OrangeTree6")
+                case 64:
+                    plantImageLabel.image = UIImage(named: "OrangeTree7")
+                case 72:
+                    plantImageLabel.image = UIImage(named: "OrangeTree8")
+                case 80:
+                    plantImageLabel.image = UIImage(named: "OrangeTree9")
+                default:
+                    plantImageLabel.image = UIImage(named: "OrangeTree0")
+                }
+                
+            }
+            
+            
+            //if settings is set to 160 days, cant die, inside and no tending OR 160 days, tending, cant die, inside
+            if plantGrowthLength == 0 && tend == 1 && wither == 1 && housePlant == 0 || plantGrowthLength == 0 && tend == 0 && wither == 1 && housePlant == 0{
+                switch diffInDays {
+                case 32:
+                    //one day has passed
+                    plantImageLabel.image = UIImage(named: "OrangeTree1")
+                case 48:
+                    plantImageLabel.image = UIImage(named: "OrangeTree2")
+                case 64:
+                    plantImageLabel.image = UIImage(named: "OrangeTree3")
+                case 80:
+                    plantImageLabel.image = UIImage(named: "OrangeTree4")
+                case 96:
+                    plantImageLabel.image = UIImage(named: "OrangeTree5")
+                case 112:
+                    plantImageLabel.image = UIImage(named: "OrangeTree6")
+                case 128:
+                    plantImageLabel.image = UIImage(named: "OrangeTree7")
+                case 144:
+                    plantImageLabel.image = UIImage(named: "OrangeTree8")
+                case 160:
+                    plantImageLabel.image = UIImage(named: "OrangeTree9")
+                default:
+                    plantImageLabel.image = UIImage(named: "OrangeTree0")
+                }
+                
+            }
+            
+            
+            //if settings is set to ten days, tending is on, can die, and inside
+            if plantGrowthLength == 0 && tend == 0 && wither == 0 && housePlant == 0{
+                switch diffInDays {
+                case 1:
+                    //one day has passed
+                    if didWater == true{
+                        plantImageLabel.image = UIImage(named: "OrangeTree1")
+                    } else if didWater == false {
+                        withering += 1
+                        //ADD WITHERING TREE IMAGES
+                       //DONT FORGET
+                    }
+                case 2:
+                    if didWater == true{
+                        plantImageLabel.image = UIImage(named: "OrangeTree2")
+                    } else if didWater == false {
+                        withering += 1
+                        //ADD WITHERING TREE IMAGES
+                       //DONT FORGET
+                    }
+                case 3:
+                    if didWater == true{
+                        plantImageLabel.image = UIImage(named: "OrangeTree3")
+                    } else if didWater == false {
+                        withering += 1
+                        //ADD WITHERING TREE IMAGES
+                       //DONT FORGET
+                    }
+                case 4:
+                    if didWater == true{
+                        plantImageLabel.image = UIImage(named: "OrangeTree4")
+                    } else if didWater == false {
+                        withering += 1
+                        //ADD WITHERING TREE IMAGES
+                       //DONT FORGET
+                    }
+                case 5:
+                    if didWater == true{
+                        plantImageLabel.image = UIImage(named: "OrangeTree5")
+                    } else if didWater == false {
+                        withering += 1
+                        //ADD WITHERING TREE IMAGES
+                       //DONT FORGET
+                    }
+                case 6:
+                    if didWater == true{
+                        plantImageLabel.image = UIImage(named: "OrangeTree6")
+                    } else if didWater == false {
+                        withering += 1
+                        //ADD WITHERING TREE IMAGES
+                       //DONT FORGET
+                    }
+                case 7:
+                    if didWater == true{
+                        plantImageLabel.image = UIImage(named: "OrangeTree7")
+                    } else if didWater == false {
+                        withering += 1
+                        //ADD WITHERING TREE IMAGES
+                       //DONT FORGET
+                    }
+                case 8:
+                    if didWater == true{
+                        plantImageLabel.image = UIImage(named: "OrangeTree8")
+                    } else if didWater == false {
+                        withering += 1
+                        //ADD WITHERING TREE IMAGES
+                       //DONT FORGET
+                    }
+                case 9:
+                    if didWater == true{
+                        plantImageLabel.image = UIImage(named: "OrangeTree9")
+                    } else if didWater == false {
+                        withering += 1
+                        //ADD WITHERING TREE IMAGES
+                       //DONT FORGET
+                    }
+                default:
+                    plantImageLabel.image = UIImage(named: "OrangeTree0")
+                }
+                
+            }
+            
+            //if settings is set to 20 days, tending is on, can die, and inside
+            if plantGrowthLength == 1 && tend == 0 && wither == 0 && housePlant == 0{
+                switch diffInDays {
+                case 4:
+                    //one day has passed
+                    if didWater == true{
+                        plantImageLabel.image = UIImage(named: "OrangeTree1")
+                    } else if didWater == false {
+                        withering += 1
+                        //ADD WITHERING TREE IMAGES
+                       //DONT FORGET
+                    }
+                case 6:
+                    if didWater == true{
+                        plantImageLabel.image = UIImage(named: "OrangeTree2")
+                    } else if didWater == false {
+                        withering += 1
+                        //ADD WITHERING TREE IMAGES
+                       //DONT FORGET
+                    }
+                case 8:
+                    if didWater == true{
+                        plantImageLabel.image = UIImage(named: "OrangeTree3")
+                    } else if didWater == false {
+                        withering += 1
+                        //ADD WITHERING TREE IMAGES
+                       //DONT FORGET
+                    }
+                case 10:
+                    if didWater == true{
+                        plantImageLabel.image = UIImage(named: "OrangeTree4")
+                    } else if didWater == false {
+                        withering += 1
+                        //ADD WITHERING TREE IMAGES
+                       //DONT FORGET
+                    }
+                case 12:
+                    if didWater == true{
+                        plantImageLabel.image = UIImage(named: "OrangeTree5")
+                    } else if didWater == false {
+                        withering += 1
+                        //ADD WITHERING TREE IMAGES
+                       //DONT FORGET
+                    }
+                case 14:
+                    if didWater == true{
+                        plantImageLabel.image = UIImage(named: "OrangeTree6")
+                    } else if didWater == false {
+                        withering += 1
+                        //ADD WITHERING TREE IMAGES
+                       //DONT FORGET
+                    }
+                case 16:
+                    if didWater == true{
+                        plantImageLabel.image = UIImage(named: "OrangeTree7")
+                    } else if didWater == false {
+                        withering += 1
+                        //ADD WITHERING TREE IMAGES
+                       //DONT FORGET
+                    }
+                case 18:
+                    if didWater == true{
+                        plantImageLabel.image = UIImage(named: "OrangeTree8")
+                    } else if didWater == false {
+                        withering += 1
+                        //ADD WITHERING TREE IMAGES
+                       //DONT FORGET
+                    }
+                case 20:
+                    if didWater == true{
+                        plantImageLabel.image = UIImage(named: "OrangeTree9")
+                    } else if didWater == false {
+                        withering += 1
+                        //ADD WITHERING TREE IMAGES
+                       //DONT FORGET
+                    }
+                default:
+                    plantImageLabel.image = UIImage(named: "OrangeTree0")
+                }
+                
+            }
+            
+            //if settings is set to 40 days, tending is on, can die, and inside
+            if plantGrowthLength == 2 && tend == 0 && wither == 0 && housePlant == 0{
+                switch diffInDays {
+                case 8:
+                    //one day has passed
+                    if didWater == true{
+                        plantImageLabel.image = UIImage(named: "OrangeTree1")
+                    } else if didWater == false {
+                        withering += 1
+                        //ADD WITHERING TREE IMAGES
+                       //DONT FORGET
+                    }
+                case 12:
+                    if didWater == true{
+                        plantImageLabel.image = UIImage(named: "OrangeTree2")
+                    } else if didWater == false {
+                        withering += 1
+                        //ADD WITHERING TREE IMAGES
+                       //DONT FORGET
+                    }
+                case 16:
+                    if didWater == true{
+                        plantImageLabel.image = UIImage(named: "OrangeTree3")
+                    } else if didWater == false {
+                        withering += 1
+                        //ADD WITHERING TREE IMAGES
+                       //DONT FORGET
+                    }
+                case 20:
+                    if didWater == true{
+                        plantImageLabel.image = UIImage(named: "OrangeTree4")
+                    } else if didWater == false {
+                        withering += 1
+                        //ADD WITHERING TREE IMAGES
+                       //DONT FORGET
+                    }
+                case 24:
+                    if didWater == true{
+                        plantImageLabel.image = UIImage(named: "OrangeTree5")
+                    } else if didWater == false {
+                        withering += 1
+                        //ADD WITHERING TREE IMAGES
+                       //DONT FORGET
+                    }
+                case 28:
+                    if didWater == true{
+                        plantImageLabel.image = UIImage(named: "OrangeTree6")
+                    } else if didWater == false {
+                        withering += 1
+                        //ADD WITHERING TREE IMAGES
+                       //DONT FORGET
+                    }
+                case 32:
+                    if didWater == true{
+                        plantImageLabel.image = UIImage(named: "OrangeTree7")
+                    } else if didWater == false {
+                        withering += 1
+                        //ADD WITHERING TREE IMAGES
+                       //DONT FORGET
+                    }
+                case 36:
+                    if didWater == true{
+                        plantImageLabel.image = UIImage(named: "OrangeTree8")
+                    } else if didWater == false {
+                        withering += 1
+                        //ADD WITHERING TREE IMAGES
+                       //DONT FORGET
+                    }
+                case 40:
+                    if didWater == true{
+                        plantImageLabel.image = UIImage(named: "OrangeTree9")
+                    } else if didWater == false {
+                        withering += 1
+                        //ADD WITHERING TREE IMAGES
+                       //DONT FORGET
+                    }
+                default:
+                    plantImageLabel.image = UIImage(named: "OrangeTree0")
+                }
+                
+            }
+            
+            
+            //if settings is set to 80 days, tending is on, can die, and inside
+            if plantGrowthLength == 3 && tend == 0 && wither == 0 && housePlant == 0{
+                switch diffInDays {
+                case 16:
+                    //one day has passed
+                    if didWater == true{
+                        plantImageLabel.image = UIImage(named: "OrangeTree1")
+                    } else if didWater == false {
+                        withering += 1
+                        //ADD WITHERING TREE IMAGES
+                       //DONT FORGET
+                    }
+                case 24:
+                    if didWater == true{
+                        plantImageLabel.image = UIImage(named: "OrangeTree2")
+                    } else if didWater == false {
+                        withering += 1
+                        //ADD WITHERING TREE IMAGES
+                       //DONT FORGET
+                    }
+                case 32:
+                    if didWater == true{
+                        plantImageLabel.image = UIImage(named: "OrangeTree3")
+                    } else if didWater == false {
+                        withering += 1
+                        //ADD WITHERING TREE IMAGES
+                       //DONT FORGET
+                    }
+                case 40:
+                    if didWater == true{
+                        plantImageLabel.image = UIImage(named: "OrangeTree4")
+                    } else if didWater == false {
+                        withering += 1
+                        //ADD WITHERING TREE IMAGES
+                       //DONT FORGET
+                    }
+                case 48:
+                    if didWater == true{
+                        plantImageLabel.image = UIImage(named: "OrangeTree5")
+                    } else if didWater == false {
+                        withering += 1
+                        //ADD WITHERING TREE IMAGES
+                       //DONT FORGET
+                    }
+                case 56:
+                    if didWater == true{
+                        plantImageLabel.image = UIImage(named: "OrangeTree6")
+                    } else if didWater == false {
+                        withering += 1
+                        //ADD WITHERING TREE IMAGES
+                       //DONT FORGET
+                    }
+                case 64:
+                    if didWater == true{
+                        plantImageLabel.image = UIImage(named: "OrangeTree7")
+                    } else if didWater == false {
+                        withering += 1
+                        //ADD WITHERING TREE IMAGES
+                       //DONT FORGET
+                    }
+                case 72:
+                    if didWater == true{
+                        plantImageLabel.image = UIImage(named: "OrangeTree8")
+                    } else if didWater == false {
+                        withering += 1
+                        //ADD WITHERING TREE IMAGES
+                       //DONT FORGET
+                    }
+                case 80:
+                    if didWater == true{
+                        plantImageLabel.image = UIImage(named: "OrangeTree9")
+                    } else if didWater == false {
+                        withering += 1
+                        //ADD WITHERING TREE IMAGES
+                       //DONT FORGET
+                    }
+                default:
+                    plantImageLabel.image = UIImage(named: "OrangeTree0")
+                }
+                
+            }
+            
+            //if settings is set to 160 days, tending is on, can die, and inside
+            if plantGrowthLength == 4 && tend == 0 && wither == 0 && housePlant == 0{
+                switch diffInDays {
+                case 32:
+                    //one day has passed
+                    if didWater == true{
+                        plantImageLabel.image = UIImage(named: "OrangeTree1")
+                    } else if didWater == false {
+                        withering += 1
+                        //ADD WITHERING TREE IMAGES
+                       //DONT FORGET
+                    }
+                case 48:
+                    if didWater == true{
+                        plantImageLabel.image = UIImage(named: "OrangeTree2")
+                    } else if didWater == false {
+                        withering += 1
+                        //ADD WITHERING TREE IMAGES
+                       //DONT FORGET
+                    }
+                case 64:
+                    if didWater == true{
+                        plantImageLabel.image = UIImage(named: "OrangeTree3")
+                    } else if didWater == false {
+                        withering += 1
+                        //ADD WITHERING TREE IMAGES
+                       //DONT FORGET
+                    }
+                case 80:
+                    if didWater == true{
+                        plantImageLabel.image = UIImage(named: "OrangeTree4")
+                    } else if didWater == false {
+                        withering += 1
+                        //ADD WITHERING TREE IMAGES
+                       //DONT FORGET
+                    }
+                case 96:
+                    if didWater == true{
+                        plantImageLabel.image = UIImage(named: "OrangeTree5")
+                    } else if didWater == false {
+                        withering += 1
+                        //ADD WITHERING TREE IMAGES
+                       //DONT FORGET
+                    }
+                case 112:
+                    if didWater == true{
+                        plantImageLabel.image = UIImage(named: "OrangeTree6")
+                    } else if didWater == false {
+                        withering += 1
+                        //ADD WITHERING TREE IMAGES
+                       //DONT FORGET
+                    }
+                case 128:
+                    if didWater == true{
+                        plantImageLabel.image = UIImage(named: "OrangeTree7")
+                    } else if didWater == false {
+                        withering += 1
+                        //ADD WITHERING TREE IMAGES
+                       //DONT FORGET
+                    }
+                case 144:
+                    if didWater == true{
+                        plantImageLabel.image = UIImage(named: "OrangeTree8")
+                    } else if didWater == false {
+                        withering += 1
+                        //ADD WITHERING TREE IMAGES
+                       //DONT FORGET
+                    }
+                case 160:
+                    if didWater == true{
+                        plantImageLabel.image = UIImage(named: "OrangeTree9")
+                    } else if didWater == false {
+                        withering += 1
+                        //ADD WITHERING TREE IMAGES
+                       //DONT FORGET
+                    }
+                default:
+                    plantImageLabel.image = UIImage(named: "OrangeTree0")
+                }
+                
+            }
+            
+            
+            //IF IT
+            if withering == 8 {
+                //REPLACE WITH DEAD STICK LEAVES ON GROUND
+                plantImageLabel.image = UIImage(named: "OrangeTree0")
+
+            }
+            
+            
+            
+            
+            
+            
         }
     }
     
