@@ -38,10 +38,6 @@ class SavedPlantsViewController: UIViewController {
                  
                     singlePlantVC.savedPlant = savedPlants[indexPath.row]
              }
-        
-        
-        
-        
     }
     }
 
