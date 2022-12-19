@@ -22,8 +22,14 @@ class PlantSettingsViewController: UIViewController {
     var plantImage = UIImage(named: "OrangeTree0")
     var plantLocationImage = UIImage(named: "inside")
     
+    var hour = Calendar.current.component(.hour, from: Date())
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        backgroundColorBasedOnTime()
+        
         
         //userdefaults and save when you go away and come back
         UserDefaults.standard.bool(forKey: "tend")
@@ -78,6 +84,8 @@ class PlantSettingsViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "Yes, Please!", style: .default, handler: {(action) in
             
             self.savedPlants.append(SavedPlants(plantImage: self.plantImage!, locationImage: self.plantLocationImage!, dateSaved: Date()))
+            
+      
             self.performSegue(withIdentifier: "gotoSaved", sender: self)
    
         }))
@@ -94,18 +102,13 @@ class PlantSettingsViewController: UIViewController {
         
         
         //shows alert they won
-        let alert = UIAlertController(title: "Are You Sure?", message: "Respawning your plant will delete your current plant and respawn a new one of the same type.", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Are You Sure?", message: "Respawning your plant will delete your current plant and respawn a new one of the same type. Please Save Your Plant If Needed.", preferredStyle: .alert)
         
         // delete, no saving
-        alert.addAction(UIAlertAction(title: "Yes, Delete My Current Plant", style: .default, handler: {(action) in
-            //code goes here
+        alert.addAction(UIAlertAction(title: "Yes, Respawn My Plant.", style: .default, handler: {(action) in
+            self.plantImage = UIImage(named: "OrangeTree0")
    
         }))
-        //delete and save
-        alert.addAction(UIAlertAction(title: "Save and Respawn A New Plant", style: .default, handler: {(action: UIAlertAction) in
-            //code for replay goes here
-        }))
-        
         //go back without doing anything
         alert.addAction(UIAlertAction(title: "Nevermind, Go back", style: .default, handler: {(action) in alert.dismiss(animated: true, completion: nil)}))
         
@@ -127,5 +130,98 @@ class PlantSettingsViewController: UIViewController {
         }
         
     }
+    
+    
+    
+    func backgroundColorBasedOnTime(){
+        switch hour{
+        case 00...05:
+            setNightColors()
+        case 06...08:
+            setSunriseColors()
+        case 09...12:
+            setMorningColors()
+        case 13...17:
+            setMiddayColors()
+        case 18...20:
+            setSunsetColors()
+        case 21...23:
+            setNightColors()
+        default:
+            view.backgroundColor = .blue
+            
+        }
+    }
+    
+    
+    func setSunriseColors() {
+        let colorTop =  UIColor(red: 217.0/255.0, green: 100.0/255.0, blue: 0.0/255.0, alpha: 1.0).cgColor
+        let colorBottom = UIColor(red: 10.0/255.0, green: 94.0/255.0, blue: 255.0/255.0, alpha: 1.0).cgColor
+          
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [colorTop, colorBottom]
+        gradientLayer.locations = [0.0, 1.0]
+        gradientLayer.frame = self.view.bounds
+                
+        self.view.layer.insertSublayer(gradientLayer, at:0)
+    }
+    
+    
+    
+    func setMorningColors() {
+        let colorTop =  UIColor(red: 245.0/255.0, green: 220.0/255.0, blue: 88.0/255.0, alpha: 1.0).cgColor
+        let colorBottom = UIColor(red: 10.0/255.0, green: 94.0/255.0, blue: 255.0/255.0, alpha: 1.0).cgColor
+          
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [colorTop, colorBottom]
+        gradientLayer.locations = [0.0, 1.0]
+        gradientLayer.frame = self.view.bounds
+                
+        self.view.layer.insertSublayer(gradientLayer, at:0)
+    }
+    
+    
+    func setMiddayColors() {
+        let colorTop =  UIColor(red: 255.0/255.0, green: 230.0/255.0, blue: 153.0/255.0, alpha: 1.0).cgColor
+        let colorBottom = UIColor(red: 10.0/255.0, green: 94.0/255.0, blue: 255.0/255.0, alpha: 1.0).cgColor
+          
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [colorTop, colorBottom]
+        gradientLayer.locations = [0.0, 1.0]
+        gradientLayer.frame = self.view.bounds
+                
+        self.view.layer.insertSublayer(gradientLayer, at:0)
+    }
+    
+    
+    func setSunsetColors() {
+        let colorTop =  UIColor(red: 217.0/255.0, green: 100.0/255.0, blue: 117.0/255.0, alpha: 1.0).cgColor
+        let colorBottom = UIColor(red: 10.0/255.0, green: 94.0/255.0, blue: 255.0/255.0, alpha: 1.0).cgColor
+          
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [colorTop, colorBottom]
+        gradientLayer.locations = [0.0, 1.0]
+        gradientLayer.frame = self.view.bounds
+                
+        self.view.layer.insertSublayer(gradientLayer, at:0)
+    }
+    
+    func setNightColors() {
+        let colorTop =  UIColor(red: 160.0/255.0, green: 160.0/255.0, blue: 160.0/255.0, alpha: 1.0).cgColor
+        let colorBottom = UIColor(red: 90.0/255.0, green: 90.0/255.0, blue: 90.0/255.0, alpha: 1.0).cgColor
+          
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [colorTop, colorBottom]
+        gradientLayer.locations = [0.0, 1.0]
+        gradientLayer.frame = self.view.bounds
+                
+        self.view.layer.insertSublayer(gradientLayer, at:0)
+    }
+    
+    
+    
+    
+    
+    
     
 }

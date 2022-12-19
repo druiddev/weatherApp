@@ -12,6 +12,7 @@
 		2618607B294E4DBD007FD8C1 /* SavedPlantCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2618607A294E4DBD007FD8C1 /* SavedPlantCollectionViewCell.swift */; };
 		2618607D294E4DDD007FD8C1 /* SavedPlants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2618607C294E4DDD007FD8C1 /* SavedPlants.swift */; };
 		2618607F294F2C2A007FD8C1 /* SinglePlantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2618607E294F2C2A007FD8C1 /* SinglePlantViewController.swift */; };
+		26186082294FE709007FD8C1 /* DictEX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26186081294FE709007FD8C1 /* DictEX.swift */; };
 		263C6D98293FE71900F2634A /* GeocodingEX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263C6D97293FE71900F2634A /* GeocodingEX.swift */; };
 		263C6D9A293FE9B300F2634A /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263C6D99293FE9B300F2634A /* Location.swift */; };
 		263C6D9C293FF35000F2634A /* PlantSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263C6D9B293FF35000F2634A /* PlantSettingsViewController.swift */; };
@@ -38,6 +39,7 @@
 		2618607A294E4DBD007FD8C1 /* SavedPlantCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedPlantCollectionViewCell.swift; sourceTree = "<group>"; };
 		2618607C294E4DDD007FD8C1 /* SavedPlants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedPlants.swift; sourceTree = "<group>"; };
 		2618607E294F2C2A007FD8C1 /* SinglePlantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglePlantViewController.swift; sourceTree = "<group>"; };
+		26186081294FE709007FD8C1 /* DictEX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictEX.swift; sourceTree = "<group>"; };
 		263C6D97293FE71900F2634A /* GeocodingEX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocodingEX.swift; sourceTree = "<group>"; };
 		263C6D99293FE9B300F2634A /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		263C6D9B293FF35000F2634A /* PlantSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantSettingsViewController.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 				26186077294E4D87007FD8C1 /* SavedPlantsViewController.swift */,
 				2618607A294E4DBD007FD8C1 /* SavedPlantCollectionViewCell.swift */,
 				2618607C294E4DDD007FD8C1 /* SavedPlants.swift */,
+				26186081294FE709007FD8C1 /* DictEX.swift */,
 			);
 			path = "Saved Plants";
 			sourceTree = "<group>";
@@ -250,6 +253,7 @@
 				2618607F294F2C2A007FD8C1 /* SinglePlantViewController.swift in Sources */,
 				2653E1DF293ACC7800CD1925 /* CollectionViewCell.swift in Sources */,
 				2653E1C9293AAD1500CD1925 /* SceneDelegate.swift in Sources */,
+				26186082294FE709007FD8C1 /* DictEX.swift in Sources */,
 				2653E1DB293AB2B000CD1925 /* 3HourForecastJsonEX.swift in Sources */,
 				2653E1DD293AB47800CD1925 /* Weather.swift in Sources */,
 				263EFA1B29455A2200C5FDD4 /* threeHourCollectionViewCell.swift in Sources */,

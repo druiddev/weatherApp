@@ -17,6 +17,8 @@ class Location {
         self.state = state
     }
     
-    
+    var locationString: String {
+        return "\(city),\(state)"
+    }
     
 }

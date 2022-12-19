@@ -156,19 +156,28 @@
                                 <rect key="frame" x="31" y="227" width="331" height="383"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="OrangeTree9" translatesAutoresizingMaskIntoConstraints="NO" id="DD8-kh-juk">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="OrangeTree0" translatesAutoresizingMaskIntoConstraints="NO" id="DD8-kh-juk">
                                 <rect key="frame" x="52" y="227" width="301" height="353"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R3O-Nx-m33">
                                 <rect key="frame" x="31" y="508" width="77" height="72"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <size key="titleShadowOffset" width="2" height="2"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="wateringCan"/>
+                                <buttonConfiguration key="configuration" style="plain" image="wateringCan" cornerStyle="capsule">
+                                    <backgroundConfiguration key="background" strokeWidth="0.0">
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </backgroundConfiguration>
+                                </buttonConfiguration>
                                 <connections>
                                     <action selector="wateringCanButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tgT-ne-RlQ"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="pour" translatesAutoresizingMaskIntoConstraints="NO" id="XzT-oL-rAI">
+                                <rect key="frame" x="210" y="404" width="67" height="68"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -222,6 +231,8 @@
                         <outlet property="searchButton" destination="R9S-hw-tGZ" id="dB1-n3-d32"/>
                         <outlet property="temperatureLabel" destination="3te-FF-mdS" id="83A-n5-obY"/>
                         <outlet property="viewBackground" destination="8bC-Xf-vdC" id="8Le-d4-sgM"/>
+                        <outlet property="wateringCan" destination="R3O-Nx-m33" id="jFU-FI-DDE"/>
+                        <outlet property="wateringCanWatering" destination="XzT-oL-rAI" id="YOi-bH-Eh9"/>
                         <outlet property="weatherDescriptionLabel" destination="1eP-YB-QKr" id="0zk-gO-EWd"/>
                     </connections>
                 </viewController>
@@ -261,6 +272,7 @@
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="sK3-Ru-Nnu">
                                 <rect key="frame" x="157" y="290" width="81" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.80784313730000001" green="0.86666666670000003" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <segments>
                                     <segment title="Yes"/>
                                     <segment title="No"/>
@@ -272,6 +284,7 @@
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="IaG-0K-19U">
                                 <rect key="frame" x="156" y="372" width="81" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.80784313730000001" green="0.86666666670000003" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <segments>
                                     <segment title="Yes"/>
                                     <segment title="No"/>
@@ -280,18 +293,20 @@
                                     <action selector="plantDeathSwitchChanged:" destination="eHn-Bc-rGC" eventType="valueChanged" id="i19-hd-yS2"/>
                                 </connections>
                             </segmentedControl>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Respawn Plant" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IBF-ii-xls">
-                                <rect key="frame" x="96" y="735" width="199" height="36"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fA5-eN-5zC">
-                                <rect key="frame" x="149" y="774" width="93" height="35"/>
+                                <rect key="frame" x="107" y="740" width="189" height="41"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Respawn"/>
+                                <buttonConfiguration key="configuration" style="filled" cornerStyle="capsule">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Respawn Plant">
+                                            <attributes>
+                                                <font key="NSFont" size="23" name="AmericanTypewriter"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </buttonConfiguration>
                                 <connections>
                                     <action selector="respawnPlantButton:" destination="eHn-Bc-rGC" eventType="touchUpInside" id="vQ1-Fm-DBX"/>
                                 </connections>
@@ -306,6 +321,7 @@
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="76G-nu-r0B">
                                 <rect key="frame" x="129" y="462" width="135" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.80784313730000001" green="0.86666666670000003" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <segments>
                                     <segment title="Inside"/>
                                     <segment title="Outside"/>
@@ -314,25 +330,10 @@
                                     <action selector="plantLocationSwitchChanged:" destination="eHn-Bc-rGC" eventType="valueChanged" id="CdJ-rk-y0P"/>
                                 </connections>
                             </segmentedControl>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Save and Store Plant" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xk0-ob-yKf">
-                                <rect key="frame" x="96" y="648" width="199" height="36"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XjX-w2-oH3">
-                                <rect key="frame" x="127" y="692" width="139" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Save and Store"/>
-                                <connections>
-                                    <action selector="saveandStoreButton:" destination="eHn-Bc-rGC" eventType="touchUpInside" id="pR3-FL-lxd"/>
-                                </connections>
-                            </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="yFp-rz-bcd">
                                 <rect key="frame" x="32" y="180" width="331" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.80784313730000001" green="0.86666666670000003" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <segments>
                                     <segment title="10 Days"/>
                                     <segment title="20 Days"/>
@@ -344,6 +345,24 @@
                                     <action selector="growthSwitchChanged:" destination="eHn-Bc-rGC" eventType="valueChanged" id="Hn2-vN-FIo"/>
                                 </connections>
                             </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XjX-w2-oH3">
+                                <rect key="frame" x="75" y="662" width="253" height="41"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" cornerStyle="capsule">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Save and Store Plant">
+                                            <attributes>
+                                                <font key="NSFont" size="23" name="AmericanTypewriter"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="saveandStoreButton:" destination="eHn-Bc-rGC" eventType="touchUpInside" id="pR3-FL-lxd"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Gjw-uF-uV3"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -498,34 +517,21 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="FdO-XT-wzf">
-                                    <size key="itemSize" width="161" height="207"/>
+                                    <size key="itemSize" width="124" height="209"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell_ID_2" id="KyI-Wa-oYr" customClass="threeHourCollectionViewCell" customModule="MindfulWeatherApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="26" width="161" height="207"/>
+                                        <rect key="frame" x="0.0" y="25" width="124" height="209"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="XxJ-Je-FUb">
-                                            <rect key="frame" x="0.0" y="0.0" width="161" height="207"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="124" height="209"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jKl-B1-bRb">
-                                                    <rect key="frame" x="8" y="148" width="153" height="59"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <attributedString key="attributedText">
-                                                        <fragment content="20 20">
-                                                            <attributes>
-                                                                <font key="NSFont" size="21" name="AmericanTypewriter"/>
-                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                    </attributedString>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MP2-HT-scM">
-                                                    <rect key="frame" x="-11" y="0.0" width="181" height="70"/>
+                                                    <rect key="frame" x="-5" y="0.0" width="134" height="58"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="12-10  12AM">
@@ -538,12 +544,25 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QOM-uP-rp6">
-                                                    <rect key="frame" x="4" y="23" width="153" height="161"/>
+                                                    <rect key="frame" x="2" y="23" width="121" height="162"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jKl-B1-bRb">
+                                                    <rect key="frame" x="5" y="148" width="115" height="53"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <attributedString key="attributedText">
+                                                        <fragment content="20 20">
+                                                            <attributes>
+                                                                <font key="NSFont" size="21" name="AmericanTypewriter"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </collectionViewCellContentView>
-                                        <size key="customSize" width="161" height="207"/>
+                                        <size key="customSize" width="124" height="209"/>
                                         <connections>
                                             <outlet property="dateLabel" destination="MP2-HT-scM" id="h1P-bL-qax"/>
                                             <outlet property="lowHighLabel" destination="jKl-B1-bRb" id="A6x-24-wVh"/>
@@ -685,7 +704,7 @@
                                 <rect key="frame" x="35" y="103" width="323" height="380"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="OrangeTree6" translatesAutoresizingMaskIntoConstraints="NO" id="LJG-bV-kVQ">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="OrangeTree0" translatesAutoresizingMaskIntoConstraints="NO" id="LJG-bV-kVQ">
                                 <rect key="frame" x="35" y="103" width="323" height="380"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -742,15 +761,15 @@
         </scene>
     </scenes>
     <resources>
+        <image name="OrangeTree0" width="500" height="500"/>
         <image name="OrangeTree3" width="500" height="500"/>
-        <image name="OrangeTree6" width="500" height="500"/>
-        <image name="OrangeTree9" width="500" height="500"/>
         <image name="background" width="6016" height="4016"/>
         <image name="inside" width="250" height="250"/>
         <image name="location" catalog="system" width="128" height="121"/>
         <image name="outside" width="250" height="250"/>
         <image name="plantInHand" width="50" height="50"/>
-        <image name="wateringCan" width="48" height="48"/>
+        <image name="pour" width="48" height="48"/>
+        <image name="wateringCan" width="64" height="64"/>
         <image name="weatherSettings" width="50" height="50"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

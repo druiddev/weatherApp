@@ -8,7 +8,7 @@
 import UIKit
 import CoreLocation
 
-class ViewController: UIViewController, CLLocationManagerDelegate{
+class ViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDelegate{
     
     
     var searchController = UISearchController(searchResultsController: nil)
@@ -24,6 +24,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     @IBOutlet var weatherDescriptionLabel: UILabel!
     @IBOutlet var searchButton: UIBarButtonItem!
     @IBOutlet var searchBar: UITextField!
+    @IBOutlet var wateringCanWatering: UIImageView!
+    @IBOutlet var wateringCan: UIButton!
+    
+    
+    
     
     //location vars
     var dailyWeather = [DailyWeather]()
@@ -64,7 +69,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       
+        self.searchBar.delegate = self
+        
+        wateringCanWatering.isHidden = true
         //user defaults function for plant settings
         userDefaultsSavedInfo()
         
@@ -103,50 +110,72 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
         daysCollectionView.reloadData()
         reloadDataInputs()
         userDefaultsSavedInfo()
+        
     }
     
     func userDefaultsSavedInfo(){
         
         
         if let value = UserDefaults.standard.value(forKey: "growthLength"){
-                  let selectedIndex = value as! Int
-                  plantGrowthLength = selectedIndex
-              }
+            let selectedIndex = value as! Int
+            plantGrowthLength = selectedIndex
+        }
         
         if let value = UserDefaults.standard.value(forKey: "tend"){
-                  let selectedIndex = value as! Int
-                  tend = selectedIndex
-              }
+            let selectedIndex = value as! Int
+            tend = selectedIndex
+        }
         
         if let value = UserDefaults.standard.value(forKey: "wither"){
-                  let selectedIndex = value as! Int
-                  wither = selectedIndex
-              }
+            let selectedIndex = value as! Int
+            wither = selectedIndex
+        }
         
         if let value = UserDefaults.standard.value(forKey: "plantLocation"){
-                  let selectedIndex = value as! Int
-                  housePlant = selectedIndex
-              }
+            let selectedIndex = value as! Int
+            housePlant = selectedIndex
+        }
+        //gets the users last saved plants dict from the last time they were using the app and uses it as the starting point in the table
+        if savedPlants.isEmpty == false{
+            if let userSavedDict = UserDefaults.standard.get(forKey: "filter"){
+                savedPlants = userSavedDict
+            }
+            
+        }
     }
-    
     func waterPlant(){
-        
         didWater = true
-        
     }
     
     @IBAction func wateringCanButton(_ sender: Any) {
         
+        //changes bool to true so your plant doesnt die
         waterPlant()
+        //hides button so you can see pouring image
+        wateringCan.isHidden = true
+        wateringCanWatering.isHidden = false
+        
+        //waits four seconds to finish pouring, then hides the image and replaces the can
+        let seconds = 4.0
+        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+            self.wateringCan.isHidden = false
+            self.wateringCanWatering.isHidden = true        }
         
     }
     
     
     func reloadDataInputs(){
         
-//        for loc in locationInfo{
-//            locationLabel.text = "\(loc.city), \(loc.state)"
-//        }
+
+        plantImageLabel.image = plantImage
+        
+        if insideImageLabel.isHidden == true{
+            outsideImageLabel.image = plantLocationImage
+        } else if insideImageLabel.isHidden == false{
+            insideImageLabel.image = plantLocationImage
+
+        }
+        
         
         for info in dailyWeather {
             let t = String(info.currentTemp.description).dropLast(2)
@@ -177,7 +206,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
                 latitude = location.coordinate.latitude
                 lon = (longitude*100).rounded()/100 //rounds it to two decimal places
                 lat = (latitude*100).rounded()/100
-                print("\(lat),\(lon)")
                 //json weather data
                 var searchInput = "\(lat),\(lon)"
                 parseJson()
@@ -225,15 +253,32 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
         //makes what the user types, the new info for parsing, then re does the views. removes the spaces if they type any also
             searchInput = String(searchBar.text!.filter { !" \n\t\r".contains($0) })
         
-            if searchInput.isEmpty != true {
-                parseJson()
-                reloadDataInputs()
-                daysCollectionView.reloadData()
-            }
+        if searchInput.isEmpty != true {
+            parseJson()
+            reloadDataInputs()
+            daysCollectionView.reloadData()
+        }
        
 
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+
+        //textField code
+
+        searchBar.resignFirstResponder()  //if desired
+        
+        //makes what the user types, the new info for parsing, then re does the views. removes the spaces if they type any also
+            searchInput = String(searchBar.text!.filter { !" \n\t\r".contains($0) })
+        
+        if searchInput.isEmpty != true {
+            parseJson()
+            reloadDataInputs()
+            daysCollectionView.reloadData()
+        }
+        
+        return true
+    }
     
     
     
@@ -852,9 +897,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
                 
         self.view.layer.insertSublayer(gradientLayer, at:0)
     }
-    
-    
-    
+
     func setMorningColors() {
         let colorTop =  UIColor(red: 245.0/255.0, green: 220.0/255.0, blue: 88.0/255.0, alpha: 1.0).cgColor
         let colorBottom = UIColor(red: 10.0/255.0, green: 94.0/255.0, blue: 255.0/255.0, alpha: 1.0).cgColor
@@ -866,8 +909,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
                 
         self.view.layer.insertSublayer(gradientLayer, at:0)
     }
-    
-    
+
     func setMiddayColors() {
         let colorTop =  UIColor(red: 255.0/255.0, green: 230.0/255.0, blue: 153.0/255.0, alpha: 1.0).cgColor
         let colorBottom = UIColor(red: 10.0/255.0, green: 94.0/255.0, blue: 255.0/255.0, alpha: 1.0).cgColor
@@ -879,8 +921,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
                 
         self.view.layer.insertSublayer(gradientLayer, at:0)
     }
-    
-    
+
     func setSunsetColors() {
         let colorTop =  UIColor(red: 217.0/255.0, green: 100.0/255.0, blue: 117.0/255.0, alpha: 1.0).cgColor
         let colorBottom = UIColor(red: 10.0/255.0, green: 94.0/255.0, blue: 255.0/255.0, alpha: 1.0).cgColor
@@ -911,14 +952,22 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     
     @IBAction func locationButton(_ sender: Any) {
         //using the cclocation button causes a bug crash :(
-        
-        if dailyWeather.isEmpty != true { //if its not empty
-            //searchResult = "\(lat),\(lon)"
-            //parseJson()
+        if locationInfo.isEmpty == false{
+            for i in locationInfo{
+                searchInput = i.locationString
+                parseJson()
+                reloadDataInputs()
+                daysCollectionView.reloadData()
+            }
+        } else if locationInfo.isEmpty == true{
+            let alert = UIAlertController(title: "You Did Not Allow Location", message: "Please Enter Valid City or Postal Code In Search Bar \nOr Go Into Settings And Allow Mindful Weather To Access Location.", preferredStyle: .alert)
             
+            //go back without doing anything
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: {(action) in alert.dismiss(animated: true, completion: nil)}))
+            
+            self.present(alert, animated: true, completion: nil)
         }
     }
-    
     
     @IBAction func unwindToFirst(_ unwindSegue: UIStoryboardSegue) {
         guard let plantVC = unwindSegue.source as? PlantSettingsViewController else {return}

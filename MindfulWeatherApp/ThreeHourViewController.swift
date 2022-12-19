@@ -31,6 +31,8 @@ class ThreeHourViewController: UIViewController, CLLocationManagerDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        backgroundColorBasedOnTime()
+        
       setupLocationManager()
         threeHourCollectionView.backgroundColor = .clear
         astrologyCollectionView.backgroundColor = .clear
@@ -159,11 +161,11 @@ class ThreeHourViewController: UIViewController, CLLocationManagerDelegate{
         if lat == 0.0 && lon == 0.0{
             for info in astrology{
                 weatherInformation(atURL: "https://api.openweathermap.org/data/2.5/forecast?lat=\(info.lat)&lon=\(info.lon)&appid=\(API)&units=imperial")
-                astrologyParsing(atURL: "https://api.weatherapi.com/v1/forecast.json?key=5e27e4e054a04ba8b83220852221412&q=\(info.lat),\(info.lon)&days=10&aqi=no&alerts=no")
+                astrologyParsing(atURL: "https://api.weatherapi.com/v1/forecast.json?key=5e27e4e054a04ba8b83220852221412&q=\(info.lat),\(info.lon)&days=3&aqi=no&alerts=no")
             }
         } else {
             weatherInformation(atURL: "https://api.openweathermap.org/data/2.5/forecast?lat=\(lat)&lon=\(lon)&appid=\(API)&units=imperial")
-            astrologyParsing(atURL: "https://api.weatherapi.com/v1/forecast.json?key=5e27e4e054a04ba8b83220852221412&q=\(searchInput)&days=10&aqi=no&alerts=no")
+            astrologyParsing(atURL: "https://api.weatherapi.com/v1/forecast.json?key=5e27e4e054a04ba8b83220852221412&q=\(searchInput)&days=3&aqi=no&alerts=no")
         }
        
     }

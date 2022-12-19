@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension ViewController{
     //API Key: 5e27e4e054a04ba8b83220852221412
@@ -28,30 +29,18 @@ extension ViewController{
                 guard let response = opt_response as? HTTPURLResponse,
                       response.statusCode == 200,
                       let data = opt_data
-                else { assertionFailure(); return
-                    
-                }
-        
-        
-//        let config = URLSessionConfiguration.default
-//        let session = URLSession(configuration: config)
-//        if let validURL = URL(string: urlString) {
-//            var request = URLRequest(url: validURL)
-//            //taking API key given by propublica website
-//            request.setValue("5e27e4e054a04ba8b83220852221412", forHTTPHeaderField: "X-API-Key")
-//            request.httpMethod = "GET"
-//            let task = session.dataTask(with: request, completionHandler: {(opt_data, opt_response, opt_error) in
-//
-//                if opt_error != nil { assertionFailure(); return }
-//
-//                //Check the response, statusCode, and data
-//                guard let response = opt_response as? HTTPURLResponse,
-//                      response.statusCode == 200,
-//                      let data = opt_data
-//                else { assertionFailure(); return
-//                }
-//
-                
+                else {
+                    DispatchQueue.main.async {
+                        let alert = UIAlertController(title: "Error!", message: "Please Enter Valid City or Postal Code", preferredStyle: .alert)
+                        
+                        //go back without doing anything
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: {(action) in alert.dismiss(animated: true, completion: nil)}))
+                        
+                        self.present(alert, animated: true, completion: nil)
+                        
+                    }
+                    return}
+    
                 
                 do {
                     
@@ -100,8 +89,13 @@ extension ViewController{
                                       let moonPhase = astro["moon_phase"] as? String
                                 else {continue}
                             
-                                self.dailyWeather.append(DailyWeather(city: city, state: state, country: country, lat: lat, lon: lon, currentTemp: temp, currentDesc: desc, currentIcon: icon, currentWeatherCode: code, currentRainInInches: inchesOfRain, currentHumidity: humidity, date: date, dailyTemp: avgTemp, dailyRainTotal: totalPrecip, dailySnowTotal: totalSnow, dailyHumidity: avgHumidity, dailyDesc: dayDesc, dailyIcon: dayIcon, dailyWeatherCode: dayCode, sunrise: sunrise, sunset: sunset, moonrise: moonrise, moonset: moonset, moonPhase: moonPhase))
-                                print(self.dailyWeather.count)
+                              
+                                    self.dailyWeather.append(DailyWeather(city: city, state: state, country: country, lat: lat, lon: lon, currentTemp: temp, currentDesc: desc, currentIcon: icon, currentWeatherCode: code, currentRainInInches: inchesOfRain, currentHumidity: humidity, date: date, dailyTemp: avgTemp, dailyRainTotal: totalPrecip, dailySnowTotal: totalSnow, dailyHumidity: avgHumidity, dailyDesc: dayDesc, dailyIcon: dayIcon, dailyWeatherCode: dayCode, sunrise: sunrise, sunset: sunset, moonrise: moonrise, moonset: moonset, moonPhase: moonPhase))
+                                
+                                if dailyWeather.count >= 4{
+                                    dailyWeather.removeFirst(3)
+                                }
+                                
                             }
                         }
                     }
@@ -121,39 +115,3 @@ extension ViewController{
 }
 
 
-
-
-
-
-
-
-            //                    let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String:Any]
-            //                    guard let jsonObj = json else {print("Parse Failed"); return}
-            //                    //first level
-            //                    if let list = jsonObj["list"] as? [[String: Any]]{
-            //                        for info in list {
-            //                            guard let main = info["main"] as? [String: Any]
-            //                            else {continue}
-            //                            guard let temp = main["temp"] as? Double,
-            //                                  let humidity = main["humidity"] as? Int
-            //                            else {continue}
-            //
-            //                            guard let weather = info["weather"] as? [[String: Any]]
-            //                            else {continue}
-            //                            for w in weather {
-            //                                guard let id = w["id"] as? Int,
-            //                                      let mainDesc = w["main"] as? String,
-            //                                      let desc = w["description"] as? String,
-            //                                      let icon = w["icon"] as? String
-            //                                else {continue}
-            //                                guard let date = info["dt_txt"] as? String
-            //                                else {continue}
-            //
-            //                                guard let city = jsonObj["city"] as? [String: Any],
-            //                                      let sunrise = city["sunrise"] as? Int,
-            //                                      let sunset = city["sunset"] as? Int
-            //                                else {continue}
-            //
-            //
-            //                                dailyWeather.append(DailyWeather(temp: temp, humidity: humidity, weatherID: id, mainDescription: mainDesc, description: desc, iconID: icon, date: String(date.dropFirst(5).dropLast(9)), sunrise: sunrise, sunset: sunset))
-            //
